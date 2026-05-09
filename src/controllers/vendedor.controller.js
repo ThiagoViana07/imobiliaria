@@ -1,4 +1,10 @@
-const { getTodosVendedores, getVendedorPorId, insereVendedor, modificaVendedor, deletarVendedorPorId } = require("../servicos/servico_vendedor");
+const { 
+    getTodosVendedores, 
+    getVendedorPorId, 
+    insereVendedor, 
+    modificaVendedor, 
+    deletarVendedorPorId 
+} = require("../services/vendedor.service");
 
 async function getVendedores(req, res) {
     try {
@@ -12,12 +18,19 @@ async function getVendedores(req, res) {
 async function getVendedor(req, res) {
     try {
         const id = req.params.id;
-        if (id && Number(id)) {
-            const vendedor = await getVendedorPorId(id);
-            res.status(200).json(vendedor);
-        } else {
-            res.status(422).json({ mensagem: "Id inválido" });
+        // VALIDAÇÃO: Verifica se o ID foi passado
+        if (!id) {
+            return res.status(422).json({ mensagem: "ID é obrigatório." });
         }
+
+        const vendedor = await getVendedorPorId(id);
+        
+        // VALIDAÇÃO: Verifica se o vendedor existe
+        if (!vendedor) {
+            return res.status(404).json({ mensagem: "Vendedor não encontrado." });
+        }
+
+        res.status(200).json(vendedor);
     } catch (error) {
         res.status(500).json({ erro: error.message });
     }
@@ -25,14 +38,25 @@ async function getVendedor(req, res) {
 
 async function postVendedor(req, res) {
     try {
-        const vendedorNovo = req.body;
-        // Validação simples exigindo nome e CPF
-        if (vendedorNovo.nome && vendedorNovo.cpf) {
-            await insereVendedor(vendedorNovo);
-            res.status(201).json({ mensagem: "Vendedor inserido com sucesso!" });
-        } else {
-            res.status(422).json({ mensagem: "Os campos nome e cpf são obrigatórios" });
+        const novoVendedor = req.body;
+
+        // VALIDAÇÃO: Verifica se todos os campos obrigatórios vieram no body
+        if (!novoVendedor.nome || !novoVendedor.cpf || !novoVendedor.telefone || !novoVendedor.creci) {
+            return res.status(422).json({ 
+                mensagem: "Todos os campos são obrigatórios: nome, cpf, telefone e creci." 
+            });
         }
+
+        // VALIDAÇÃO (Opcional, mas recomendada): Verifica tamanho do CPF
+        if (novoVendedor.cpf.length !== 11) {
+            return res.status(422).json({ mensagem: "O CPF deve ter exatamente 11 números." });
+        }
+
+        // Como o ID não vem no body, criamos um ID simples baseado no timestamp
+        novoVendedor.id = Date.now().toString();
+
+        await insereVendedor(novoVendedor);
+        res.status(201).json({ mensagem: "Vendedor criado com sucesso!", vendedor: novoVendedor });
     } catch (error) {
         res.status(500).json({ erro: error.message });
     }
@@ -41,13 +65,25 @@ async function postVendedor(req, res) {
 async function patchVendedor(req, res) {
     try {
         const id = req.params.id;
-        if (id && Number(id)) {
-            const body = req.body;
-            await modificaVendedor(body, id);
-            res.status(200).json({ mensagem: "Vendedor atualizado com sucesso" });
-        } else {
-            res.status(422).json({ mensagem: "Id inválido" });
+        const modificacoes = req.body;
+
+        if (!id) {
+            return res.status(422).json({ mensagem: "ID é obrigatório." });
         }
+
+        // VALIDAÇÃO: Impede que atualizem a rota enviando um body vazio
+        if (Object.keys(modificacoes).length === 0) {
+            return res.status(422).json({ mensagem: "Nenhum dado fornecido para atualização." });
+        }
+
+        // VALIDAÇÃO: Verifica se o vendedor existe antes de tentar modificar
+        const vendedorExiste = await getVendedorPorId(id);
+        if (!vendedorExiste) {
+            return res.status(404).json({ mensagem: "Vendedor não encontrado para edição." });
+        }
+
+        await modificaVendedor(modificacoes, id);
+        res.status(200).json({ mensagem: "Vendedor atualizado com sucesso!" });
     } catch (error) {
         res.status(500).json({ erro: error.message });
     }
@@ -56,12 +92,19 @@ async function patchVendedor(req, res) {
 async function deleteVendedor(req, res) {
     try {
         const id = req.params.id;
-        if (id && Number(id)) {
-            await deletarVendedorPorId(id);
-            res.status(200).json({ mensagem: "Vendedor deletado com sucesso" });
-        } else {
-            res.status(422).json({ mensagem: "Id inválido" });
+
+        if (!id) {
+            return res.status(422).json({ mensagem: "ID é obrigatório." });
         }
+
+        // VALIDAÇÃO: Verifica se existe antes de deletar
+        const vendedorExiste = await getVendedorPorId(id);
+        if (!vendedorExiste) {
+            return res.status(404).json({ mensagem: "Vendedor não encontrado para deleção." });
+        }
+
+        await deletarVendedorPorId(id);
+        res.status(200).json({ mensagem: "Vendedor deletado com sucesso!" });
     } catch (error) {
         res.status(500).json({ erro: error.message });
     }
@@ -73,4 +116,5 @@ module.exports = {
     postVendedor,
     patchVendedor,
     deleteVendedor
-}
+};
+

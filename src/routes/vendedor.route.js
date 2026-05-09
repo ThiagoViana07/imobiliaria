@@ -1,18 +1,12 @@
 const { Router } = require("express");
-// const {
-//   getVendedores,
-//   getVendedor,
-//   postVendedor,
-//   patchVendedor,
-//   deleteVendedor,
-// } = require("../controladores/controlador_vendedor");
+const router = Router()
+// coloquei a pasta no singular, mas ta no plural, controllers
+const { getVendedores, getVendedor, postVendedor, patchVendedor, deleteVendedor } = require("../controllers/vendedor.controller");
 
-const router = Router();
-
-// router.get('/', getVendedores);
-// router.get('/:id', getVendedor);
-// router.post('/', postVendedor);
-// router.patch('/:id', patchVendedor);
-// router.delete('/:id', deleteVendedor);
+router.get('/', getVendedores);
+router.get('/:id', getVendedor);
+router.post('/', postVendedor);
+router.patch('/:id', patchVendedor);
+router.delete('/:id', deleteVendedor);
 
 module.exports = router;

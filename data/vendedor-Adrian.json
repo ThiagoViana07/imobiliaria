@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "nome": "Marcos Vinicius Pereira",
+    "cpf": "11122233344",
+    "telefone": "11991112233",
+    "creci": "CR0001"
+  },
+  {
+    "id": "2",
+    "nome": "Patrícia Lopes Figueira",
+    "cpf": "22233344455",
+    "telefone": "11992223344",
+    "creci": "CR0002"
+  },
+  {
+    "id": "3",
+    "nome": "Ricardo Azevedo Melo",
+    "cpf": "33344455566",
+    "telefone": "11993334455",
+    "creci": "CR0003"
+  },
+  {
+    "id": "4",
+    "nome": "Simone Barbosa Cunha",
+    "cpf": "44455566677",
+    "telefone": "11994445566",
+    "creci": "CR0004"
+  },
+  {
+    "id": "5",
+    "nome": "Tiago Nascimento Freitas",
+    "cpf": "55566677788",
+    "telefone": "11995556677",
+    "creci": "CR0005"
+  }
+]

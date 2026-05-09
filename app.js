@@ -8,7 +8,7 @@ const routesPath = path.join(__dirname, "routes"); // array of files in the rout
 
 fs.readdirSync(routesPath).forEach((file) => {
   const route = require(`./routes/${file}`);
-  const routeName = file.replace(".js", "");
+  const routeName = file.replace(".route.js", "");
   app.use(`/${routeName}`, route);
 });
 

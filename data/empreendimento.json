@@ -1,0 +1,513 @@
+[
+  {
+    "_id": 1,
+    "nome": "Residencial Vista Verde",
+    "bairro": "Alphaville",
+    "cidade": "Barueri",
+    "estado": "SP",
+    "cep": "06453-000",
+    "unidade_imobiliaria": [
+      {
+        "_id": 1,
+        "numero": "1",
+        "quadra": "A",
+        "valor": 320000.0,
+        "area": 180.0,
+        "tipo": "casa",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "123.456.789-01", "nome": "Ana Paula Ferreira" }
+        ]
+      },
+      {
+        "_id": 2,
+        "numero": "2",
+        "quadra": "A",
+        "valor": 310000.0,
+        "area": 175.0,
+        "tipo": "casa",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "234.567.890-12", "nome": "Bruno Mendes Costa" },
+          { "cliente_id": "123.456.789-01", "nome": "Ana Paula Ferreira" }
+        ]
+      },
+      {
+        "_id": 3,
+        "numero": "3",
+        "quadra": "A",
+        "valor": 290000.0,
+        "area": 160.0,
+        "tipo": "casa",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "345.678.901-23", "nome": "Carla Souza Lima" }
+        ]
+      },
+      {
+        "_id": 4,
+        "numero": "4",
+        "quadra": "B",
+        "valor": 340000.0,
+        "area": 200.0,
+        "tipo": "casa",
+        "status": "Reservado",
+        "cliente": []
+      },
+      {
+        "_id": 5,
+        "numero": "5",
+        "quadra": "B",
+        "valor": 280000.0,
+        "area": 155.0,
+        "tipo": "casa",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 6,
+        "numero": "6",
+        "quadra": "B",
+        "valor": 295000.0,
+        "area": 162.0,
+        "tipo": "casa",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 7,
+        "numero": "7",
+        "quadra": "C",
+        "valor": 315000.0,
+        "area": 178.0,
+        "tipo": "casa",
+        "status": "Distratado",
+        "cliente": []
+      },
+      {
+        "_id": 8,
+        "numero": "8",
+        "quadra": "C",
+        "valor": 330000.0,
+        "area": 190.0,
+        "tipo": "casa",
+        "status": "Em aberto",
+        "cliente": []
+      }
+    ]
+  },
+  {
+    "_id": 2,
+    "nome": "Condomínio Solar das Flores",
+    "bairro": "Jardim Paulista",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "cep": "01427-000",
+    "unidade_imobiliaria": [
+      {
+        "_id": 9,
+        "numero": "101",
+        "quadra": "T1",
+        "valor": 480000.0,
+        "area": 90.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "456.789.012-34", "nome": "Diego Rocha Nunes" }
+        ]
+      },
+      {
+        "_id": 10,
+        "numero": "102",
+        "quadra": "T1",
+        "valor": 450000.0,
+        "area": 85.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "567.890.123-45", "nome": "Eliane Martins Pinto" }
+        ]
+      },
+      {
+        "_id": 11,
+        "numero": "103",
+        "quadra": "T1",
+        "valor": 460000.0,
+        "area": 87.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "678.901.234-56", "nome": "Fábio Alves Santos" }
+        ]
+      },
+      {
+        "_id": 12,
+        "numero": "104",
+        "quadra": "T2",
+        "valor": 490000.0,
+        "area": 92.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 13,
+        "numero": "105",
+        "quadra": "T2",
+        "valor": 430000.0,
+        "area": 80.0,
+        "tipo": "apartamento",
+        "status": "Reservado",
+        "cliente": []
+      },
+      {
+        "_id": 14,
+        "numero": "106",
+        "quadra": "T2",
+        "valor": 440000.0,
+        "area": 82.0,
+        "tipo": "apartamento",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 15,
+        "numero": "107",
+        "quadra": "T3",
+        "valor": 510000.0,
+        "area": 98.0,
+        "tipo": "apartamento",
+        "status": "Distratado",
+        "cliente": []
+      }
+    ]
+  },
+  {
+    "_id": 3,
+    "nome": "Loteamento Bela Morada",
+    "bairro": "Parque Eldorado",
+    "cidade": "Campinas",
+    "estado": "SP",
+    "cep": "13080-000",
+    "unidade_imobiliaria": [
+      {
+        "_id": 16,
+        "numero": "1",
+        "quadra": "Q1",
+        "valor": 95000.0,
+        "area": 300.0,
+        "tipo": "lote",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "789.012.345-67", "nome": "Gabriela Cruz Ramos" }
+        ]
+      },
+      {
+        "_id": 17,
+        "numero": "2",
+        "quadra": "Q1",
+        "valor": 98000.0,
+        "area": 312.0,
+        "tipo": "lote",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "890.123.456-78", "nome": "Henrique Lima Borges" }
+        ]
+      },
+      {
+        "_id": 18,
+        "numero": "3",
+        "quadra": "Q1",
+        "valor": 90000.0,
+        "area": 290.0,
+        "tipo": "lote",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 19,
+        "numero": "4",
+        "quadra": "Q2",
+        "valor": 102000.0,
+        "area": 320.0,
+        "tipo": "lote",
+        "status": "Reservado",
+        "cliente": []
+      },
+      {
+        "_id": 20,
+        "numero": "5",
+        "quadra": "Q2",
+        "valor": 85000.0,
+        "area": 275.0,
+        "tipo": "lote",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 21,
+        "numero": "6",
+        "quadra": "Q2",
+        "valor": 88000.0,
+        "area": 280.0,
+        "tipo": "lote",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 22,
+        "numero": "7",
+        "quadra": "Q3",
+        "valor": 93000.0,
+        "area": 295.0,
+        "tipo": "lote",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 23,
+        "numero": "8",
+        "quadra": "Q3",
+        "valor": 97000.0,
+        "area": 305.0,
+        "tipo": "lote",
+        "status": "Distratado",
+        "cliente": []
+      }
+    ]
+  },
+  {
+    "_id": 4,
+    "nome": "Parque Residencial Aurora",
+    "bairro": "Setor Bueno",
+    "cidade": "Goiânia",
+    "estado": "GO",
+    "cep": "74230-020",
+    "unidade_imobiliaria": [
+      {
+        "_id": 24,
+        "numero": "1",
+        "quadra": "S1",
+        "valor": 260000.0,
+        "area": 140.0,
+        "tipo": "casa",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 25,
+        "numero": "2",
+        "quadra": "S1",
+        "valor": 245000.0,
+        "area": 132.0,
+        "tipo": "casa",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "901.234.567-89", "nome": "Isabela Gomes Dias" }
+        ]
+      },
+      {
+        "_id": 26,
+        "numero": "3",
+        "quadra": "S2",
+        "valor": 270000.0,
+        "area": 148.0,
+        "tipo": "casa",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 27,
+        "numero": "4",
+        "quadra": "S2",
+        "valor": 255000.0,
+        "area": 136.0,
+        "tipo": "casa",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 28,
+        "numero": "5",
+        "quadra": "S3",
+        "valor": 240000.0,
+        "area": 128.0,
+        "tipo": "casa",
+        "status": "Distratado",
+        "cliente": []
+      },
+      {
+        "_id": 29,
+        "numero": "6",
+        "quadra": "S3",
+        "valor": 265000.0,
+        "area": 142.0,
+        "tipo": "casa",
+        "status": "Reservado",
+        "cliente": []
+      }
+    ]
+  },
+  {
+    "_id": 5,
+    "nome": "Edifício Horizonte Azul",
+    "bairro": "Meireles",
+    "cidade": "Fortaleza",
+    "estado": "CE",
+    "cep": "60165-121",
+    "unidade_imobiliaria": [
+      {
+        "_id": 30,
+        "numero": "201",
+        "quadra": "BL1",
+        "valor": 380000.0,
+        "area": 75.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 31,
+        "numero": "202",
+        "quadra": "BL1",
+        "valor": 365000.0,
+        "area": 72.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 32,
+        "numero": "203",
+        "quadra": "BL1",
+        "valor": 390000.0,
+        "area": 77.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 33,
+        "numero": "204",
+        "quadra": "BL2",
+        "valor": 400000.0,
+        "area": 80.0,
+        "tipo": "apartamento",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 34,
+        "numero": "205",
+        "quadra": "BL2",
+        "valor": 370000.0,
+        "area": 74.0,
+        "tipo": "apartamento",
+        "status": "Reservado",
+        "cliente": []
+      },
+      {
+        "_id": 35,
+        "numero": "206",
+        "quadra": "BL2",
+        "valor": 355000.0,
+        "area": 70.0,
+        "tipo": "apartamento",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 36,
+        "numero": "207",
+        "quadra": "BL3",
+        "valor": 410000.0,
+        "area": 82.0,
+        "tipo": "apartamento",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 37,
+        "numero": "208",
+        "quadra": "BL3",
+        "valor": 395000.0,
+        "area": 78.0,
+        "tipo": "apartamento",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 38,
+        "numero": "209",
+        "quadra": "BL3",
+        "valor": 420000.0,
+        "area": 85.0,
+        "tipo": "apartamento",
+        "status": "Distratado",
+        "cliente": []
+      }
+    ]
+  },
+  {
+    "_id": 6,
+    "nome": "Vila das Palmeiras",
+    "bairro": "Bom Retiro",
+    "cidade": "Curitiba",
+    "estado": "PR",
+    "cep": "80520-060",
+    "unidade_imobiliaria": [
+      {
+        "_id": 39,
+        "numero": "1",
+        "quadra": "V1",
+        "valor": 210000.0,
+        "area": 200.0,
+        "tipo": "lote",
+        "status": "Vendido",
+        "cliente": []
+      },
+      {
+        "_id": 40,
+        "numero": "2",
+        "quadra": "V1",
+        "valor": 215000.0,
+        "area": 205.0,
+        "tipo": "lote",
+        "status": "Vendido",
+        "cliente": [
+          { "cliente_id": "012.345.678-90", "nome": "João Victor Teixeira" }
+        ]
+      },
+      {
+        "_id": 41,
+        "numero": "3",
+        "quadra": "V2",
+        "valor": 220000.0,
+        "area": 210.0,
+        "tipo": "lote",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 42,
+        "numero": "4",
+        "quadra": "V2",
+        "valor": 205000.0,
+        "area": 195.0,
+        "tipo": "lote",
+        "status": "Em aberto",
+        "cliente": []
+      },
+      {
+        "_id": 43,
+        "numero": "5",
+        "quadra": "V3",
+        "valor": 225000.0,
+        "area": 215.0,
+        "tipo": "lote",
+        "status": "Distratado",
+        "cliente": []
+      }
+    ]
+  }
+]

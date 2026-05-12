@@ -1,0 +1,117 @@
+[
+  {
+    "_id": 1,
+    "nome": "Marcos Vinicius Pereira",
+    "cpf": "111.222.333-44",
+    "telefone": "(11) 99111-2233",
+    "creci": "CR0001",
+    "vendas": [
+      {
+        "venda_id": 1,
+        "data_venda": "15/01/2023",
+        "valor_venda": 320000.0,
+        "comissao": 3200,
+        "data_recebimento_comissao": "15/02/2023"
+      },
+      {
+        "venda_id": 2,
+        "data_venda": "10/03/2023",
+        "valor_venda": 310000.0,
+        "comissao": 3100,
+        "data_recebimento_comissao": "10/04/2023"
+      }
+    ]
+  },
+  {
+    "_id": 2,
+    "nome": "Patrícia Lopes Figueira",
+    "cpf": "222.333.444-55",
+    "telefone": "(11) 99222-3344",
+    "creci": "CR0002",
+    "vendas": [
+      {
+        "venda_id": 3,
+        "data_venda": "25/05/2023",
+        "valor_venda": 290000.0,
+        "comissao": 2900,
+        "data_recebimento_comissao": "25/06/2023"
+      },
+      {
+        "venda_id": 4,
+        "data_venda": "05/07/2023",
+        "valor_venda": 480000.0,
+        "comissao": 4800,
+        "data_recebimento_comissao": "05/08/2023"
+      }
+    ]
+  },
+  {
+    "_id": 3,
+    "nome": "Ricardo Azevedo Melo",
+    "cpf": "333.444.555-66",
+    "telefone": "(11) 99333-4455",
+    "creci": "CR0003",
+    "vendas": [
+      {
+        "venda_id": 5,
+        "data_venda": "20/08/2023",
+        "valor_venda": 450000.0,
+        "comissao": 4500,
+        "data_recebimento_comissao": "20/09/2023"
+      },
+      {
+        "venda_id": 6,
+        "data_venda": "05/10/2023",
+        "valor_venda": 460000.0,
+        "comissao": 4600,
+        "data_recebimento_comissao": "05/11/2023"
+      }
+    ]
+  },
+  {
+    "_id": 4,
+    "nome": "Simone Barbosa Cunha",
+    "cpf": "444.555.666-77",
+    "telefone": "(11) 99444-5566",
+    "creci": "CR0004",
+    "vendas": [
+      {
+        "venda_id": 7,
+        "data_venda": "15/01/2024",
+        "valor_venda": 95000.0,
+        "comissao": 950,
+        "data_recebimento_comissao": "15/02/2024"
+      },
+      {
+        "venda_id": 8,
+        "data_venda": "25/02/2024",
+        "valor_venda": 98000.0,
+        "comissao": 980,
+        "data_recebimento_comissao": "25/03/2024"
+      }
+    ]
+  },
+  {
+    "_id": 5,
+    "nome": "Tiago Nascimento Freitas",
+    "cpf": "555.666.777-88",
+    "telefone": "(11) 99555-6677",
+    "creci": "CR0005",
+    "vendas": [
+      {
+        "venda_id": 9,
+        "data_venda": "10/04/2024",
+        "valor_venda": 260000.0,
+        "comissao": 2600,
+        "data_recebimento_comissao": "10/05/2024"
+      },
+      {
+        "venda_id": 10,
+        "data_venda": "05/06/2024",
+        "valor_venda": 210000.0,
+        "comissao": 2100,
+        "data_recebimento_comissao": "05/07/2024"
+      }
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "_id": 1,
+        "nome": "Residencial Vista Verde",
+        "bairro": "Alphaville",
+        "cidade": "Barueri",
+        "estado": "SP",
+        "cep": "06453-000"
+    },
+    {
+        "_id": 2,
+        "nome": "Condomínio Jardim das Flores",
+        "bairro": "Jardim das Flores",
+        "cidade": "Campinas",
+        "estado": "SP",
+        "cep": "13098-000"
+    },
+    {
+        "_id": 3,
+        "nome": "Edifício Central Park",
+        "bairro": "Centro",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01000-000"
+    }
+]

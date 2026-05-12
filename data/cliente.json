@@ -1,0 +1,272 @@
+[
+  {
+    "_id": 1,
+    "nome": "Ana Paula Ferreira",
+    "cpf": "123.456.789-01",
+    "rg": "1234567",
+    "data_nascimento": "12/03/1985",
+    "profissao": "Engenheira",
+    "estado_civil": "Casado",
+    "telefone": [
+      {
+        "residencial": "(11) 98765-4321",
+        "comercial": "(11) 3344-5566"
+      }
+    ],
+    "email": "ana.ferreira@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua das Acácias",
+        "numero": "120",
+        "complemento": null,
+        "bairro": "Alphaville",
+        "cidade": "Barueri",
+        "estado": "São Paulo",
+        "cep": "06453-100"
+      }
+    ]
+  },
+  {
+    "_id": 2,
+    "nome": "Bruno Mendes Costa",
+    "cpf": "234.567.890-12",
+    "rg": "2345678",
+    "data_nascimento": "24/07/1978",
+    "profissao": "Médico",
+    "estado_civil": "Casado",
+    "telefone": [
+      {
+        "residencial": "(11) 97654-3210",
+        "comercial": "(11) 2233-4455"
+      }
+    ],
+    "email": "bruno.costa@email.com",
+    "endereco": [
+      {
+        "logradouro": "Av. Paulista",
+        "numero": "800",
+        "complemento": "Ap 52",
+        "bairro": "Bela Vista",
+        "cidade": "São Paulo",
+        "estado": "São Paulo",
+        "cep": "01310-100"
+      }
+    ]
+  },
+  {
+    "_id": 3,
+    "nome": "Carla Souza Lima",
+    "cpf": "345.678.901-23",
+    "rg": "3456789",
+    "data_nascimento": "05/11/1990",
+    "profissao": "Professora",
+    "estado_civil": "Solteiro",
+    "telefone": [
+      {
+        "residencial": "(11) 96543-2109",
+        "comercial": null
+      }
+    ],
+    "email": "carla.lima@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua das Orquídeas",
+        "numero": "45",
+        "complemento": null,
+        "bairro": "Jardim Flamboyant",
+        "cidade": "Campinas",
+        "estado": "São Paulo",
+        "cep": "13080-050"
+      }
+    ]
+  },
+  {
+    "_id": 4,
+    "nome": "Diego Rocha Nunes",
+    "cpf": "456.789.012-34",
+    "rg": "4567890",
+    "data_nascimento": "18/01/1982",
+    "profissao": "Advogado",
+    "estado_civil": "Divorciado",
+    "telefone": [
+      {
+        "residencial": "(11) 95432-1098",
+        "comercial": "(11) 5566-7788"
+      }
+    ],
+    "email": "diego.nunes@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua Goiás",
+        "numero": "230",
+        "complemento": "Casa 2",
+        "bairro": "Setor Bueno",
+        "cidade": "Goiânia",
+        "estado": "Goiás",
+        "cep": "74230-020"
+      }
+    ]
+  },
+  {
+    "_id": 5,
+    "nome": "Eliane Martins Pinto",
+    "cpf": "567.890.123-45",
+    "rg": "5678901",
+    "data_nascimento": "30/06/1995",
+    "profissao": "Farmacêutica",
+    "estado_civil": "Solteiro",
+    "telefone": [
+      {
+        "residencial": "(11) 94321-0987",
+        "comercial": null
+      }
+    ],
+    "email": "eliane.pinto@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua Monsenhor Bruno",
+        "numero": "310",
+        "complemento": null,
+        "bairro": "Meireles",
+        "cidade": "Fortaleza",
+        "estado": "Ceará",
+        "cep": "60165-121"
+      }
+    ]
+  },
+  {
+    "_id": 6,
+    "nome": "Fábio Alves Santos",
+    "cpf": "678.901.234-56",
+    "rg": "6789012",
+    "data_nascimento": "14/09/1975",
+    "profissao": "Contador",
+    "estado_civil": "Casado",
+    "telefone": [
+      {
+        "residencial": "(11) 93210-9876",
+        "comercial": "(11) 6677-8899"
+      }
+    ],
+    "email": "fabio.santos@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua XV de Novembro",
+        "numero": "500",
+        "complemento": "Sala 3",
+        "bairro": "Centro",
+        "cidade": "Curitiba",
+        "estado": "Paraná",
+        "cep": "80520-060"
+      }
+    ]
+  },
+  {
+    "_id": 7,
+    "nome": "Gabriela Cruz Ramos",
+    "cpf": "789.012.345-67",
+    "rg": "7890123",
+    "data_nascimento": "22/04/1988",
+    "profissao": "Arquiteta",
+    "estado_civil": "Casado",
+    "telefone": [
+      {
+        "residencial": "(11) 92109-8765",
+        "comercial": null
+      }
+    ],
+    "email": "gabriela.ramos@email.com",
+    "endereco": [
+      {
+        "logradouro": "Alameda Santos",
+        "numero": "220",
+        "complemento": "Ap 31",
+        "bairro": "Jardins",
+        "cidade": "São Paulo",
+        "estado": "São Paulo",
+        "cep": "01419-000"
+      }
+    ]
+  },
+  {
+    "_id": 8,
+    "nome": "Henrique Lima Borges",
+    "cpf": "890.123.456-78",
+    "rg": "8901234",
+    "data_nascimento": "03/12/1970",
+    "profissao": "Empresário",
+    "estado_civil": "Viuvo",
+    "telefone": [
+      {
+        "residencial": "(11) 91098-7654",
+        "comercial": "(11) 7788-9900"
+      }
+    ],
+    "email": "henrique.borges@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua Voluntários da Pátria",
+        "numero": "88",
+        "complemento": null,
+        "bairro": "Centro",
+        "cidade": "Curitiba",
+        "estado": "Paraná",
+        "cep": "80020-010"
+      }
+    ]
+  },
+  {
+    "_id": 9,
+    "nome": "Isabela Gomes Dias",
+    "cpf": "901.234.567-89",
+    "rg": "9012345",
+    "data_nascimento": "17/08/1993",
+    "profissao": "Dentista",
+    "estado_civil": "Solteiro",
+    "telefone": [
+      {
+        "residencial": "(11) 90987-6543",
+        "comercial": null
+      }
+    ],
+    "email": "isabela.dias@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua Barão de Studart",
+        "numero": "150",
+        "complemento": null,
+        "bairro": "Aldeota",
+        "cidade": "Fortaleza",
+        "estado": "Ceará",
+        "cep": "60120-001"
+      }
+    ]
+  },
+  {
+    "_id": 10,
+    "nome": "João Victor Teixeira",
+    "cpf": "012.345.678-90",
+    "rg": "0123456",
+    "data_nascimento": "28/02/1980",
+    "profissao": "Arquiteto",
+    "estado_civil": "Divorciado",
+    "telefone": [
+      {
+        "residencial": "(11) 99876-5432",
+        "comercial": "(11) 8899-0011"
+      }
+    ],
+    "email": "joao.teixeira@email.com",
+    "endereco": [
+      {
+        "logradouro": "Rua Padre Vieira",
+        "numero": "400",
+        "complemento": null,
+        "bairro": "Consolação",
+        "cidade": "São Paulo",
+        "estado": "São Paulo",
+        "cep": "01224-000"
+      }
+    ]
+  }
+]

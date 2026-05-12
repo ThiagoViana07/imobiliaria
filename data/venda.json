@@ -1,0 +1,465 @@
+[
+  {
+    "_id": 1,
+    "vendedor": {
+      "vendedor_id": 1,
+      "nome": "Marcos Vinicius Pereira"
+    },
+    "data_venda": "15/01/2023",
+    "data_pagamento_entrada": "10/01/2023",
+    "quantidade_parcelas": 6,
+    "valor_entrada": 32000.0,
+    "valor_venda": 320000.0,
+    "comissao_vendedor": 3200,
+    "comissao_data_recebimento": "15/02/2023",
+    "status": "Liquidado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 1,
+      "unidade_imobiliaria_id": 1,
+      "valor_total": 320000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "123.456.789-01",
+        "nome": "Ana Paula Ferreira",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "15/02/2023",
+        "data_pagamento": "15/02/2023",
+        "valor_parcela": 48000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "15/03/2023",
+        "data_pagamento": "15/03/2023",
+        "valor_parcela": 48000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      },
+      {
+        "_id": 3,
+        "data_vencimento": "15/04/2023",
+        "data_pagamento": "15/04/2023",
+        "valor_parcela": 48000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Transferencia"
+      }
+    ]
+  },
+
+  {
+    "_id": 2,
+    "vendedor": {
+      "vendedor_id": 1,
+      "nome": "Marcos Vinicius Pereira"
+    },
+    "data_venda": "10/03/2023",
+    "data_pagamento_entrada": "05/03/2023",
+    "quantidade_parcelas": 10,
+    "valor_entrada": 31000.0,
+    "valor_venda": 310000.0,
+    "comissao_vendedor": 3100,
+    "comissao_data_recebimento": "10/04/2023",
+    "status": "Financiado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 1,
+      "unidade_imobiliaria_id": 2,
+      "valor_total": 310000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "234.567.890-12",
+        "nome": "Bruno Mendes Costa",
+        "responsavel_financeiro": true
+      },
+      {
+        "cliente_id": "123.456.789-01",
+        "nome": "Ana Paula Ferreira",
+        "responsavel_financeiro": false
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "10/04/2023",
+        "data_pagamento": "10/04/2023",
+        "valor_parcela": 27900.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "10/05/2023",
+        "data_pagamento": "10/05/2023",
+        "valor_parcela": 27900.0,
+        "juros": 150.0,
+        "forma_pagamento": "Boleto"
+      }
+    ]
+  },
+
+  {
+    "_id": 3,
+    "vendedor": {
+      "vendedor_id": 2,
+      "nome": "Patrícia Lopes Figueira"
+    },
+    "data_venda": "25/05/2023",
+    "data_pagamento_entrada": "20/05/2023",
+    "quantidade_parcelas": 8,
+    "valor_entrada": 29000.0,
+    "valor_venda": 290000.0,
+    "comissao_vendedor": 2900,
+    "comissao_data_recebimento": "25/06/2023",
+    "status": "Distratado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 1,
+      "unidade_imobiliaria_id": 3,
+      "valor_total": 290000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "345.678.901-23",
+        "nome": "Carla Souza Lima",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "25/07/2023",
+        "data_pagamento": "25/07/2023",
+        "valor_parcela": 32625.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "25/08/2023",
+        "data_pagamento": "25/08/2023",
+        "valor_parcela": 32625.0,
+        "juros": 200.0,
+        "forma_pagamento": "Boleto"
+      }
+    ]
+  },
+
+  {
+    "_id": 4,
+    "vendedor": {
+      "vendedor_id": 2,
+      "nome": "Patrícia Lopes Figueira"
+    },
+    "data_venda": "05/07/2023",
+    "data_pagamento_entrada": "01/07/2023",
+    "quantidade_parcelas": 0,
+    "valor_entrada": 480000.0,
+    "valor_venda": 480000.0,
+    "comissao_vendedor": 4800,
+    "comissao_data_recebimento": "05/08/2023",
+    "status": "Liquidado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 2,
+      "unidade_imobiliaria_id": 9,
+      "valor_total": 480000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "456.789.012-34",
+        "nome": "Diego Rocha Nunes",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "05/07/2023",
+        "data_pagamento": "05/07/2023",
+        "valor_parcela": 480000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Transferencia"
+      }
+    ]
+  },
+
+  {
+    "_id": 5,
+    "vendedor": {
+      "vendedor_id": 3,
+      "nome": "Ricardo Azevedo Melo"
+    },
+    "data_venda": "20/08/2023",
+    "data_pagamento_entrada": "15/08/2023",
+    "quantidade_parcelas": 6,
+    "valor_entrada": 45000.0,
+    "valor_venda": 450000.0,
+    "comissao_vendedor": 4500,
+    "comissao_data_recebimento": "20/09/2023",
+    "status": "Financiado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 2,
+      "unidade_imobiliaria_id": 10,
+      "valor_total": 450000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "567.890.123-45",
+        "nome": "Eliane Martins Pinto",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "20/09/2023",
+        "data_pagamento": "20/09/2023",
+        "valor_parcela": 67500.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "20/10/2023",
+        "data_pagamento": "20/10/2023",
+        "valor_parcela": 67500.0,
+        "juros": 300.0,
+        "forma_pagamento": "Boleto"
+      }
+    ]
+  },
+
+  {
+    "_id": 6,
+    "vendedor": {
+      "vendedor_id": 3,
+      "nome": "Ricardo Azevedo Melo"
+    },
+    "data_venda": "05/10/2023",
+    "data_pagamento_entrada": "01/10/2023",
+    "quantidade_parcelas": 10,
+    "valor_entrada": 46000.0,
+    "valor_venda": 460000.0,
+    "comissao_vendedor": 4600,
+    "comissao_data_recebimento": "05/11/2023",
+    "status": "Transferido",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 2,
+      "unidade_imobiliaria_id": 11,
+      "valor_total": 460000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "678.901.234-56",
+        "nome": "Fábio Alves Santos",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "05/11/2023",
+        "data_pagamento": "05/11/2023",
+        "valor_parcela": 41400.0,
+        "juros": 0.0,
+        "forma_pagamento": "Cartão"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "05/12/2023",
+        "data_pagamento": "05/12/2023",
+        "valor_parcela": 41400.0,
+        "juros": 250.0,
+        "forma_pagamento": "Cartão"
+      }
+    ]
+  },
+
+  {
+    "_id": 7,
+    "vendedor": {
+      "vendedor_id": 4,
+      "nome": "Simone Barbosa Cunha"
+    },
+    "data_venda": "15/01/2024",
+    "data_pagamento_entrada": "10/01/2024",
+    "quantidade_parcelas": 4,
+    "valor_entrada": 19000.0,
+    "valor_venda": 95000.0,
+    "comissao_vendedor": 950,
+    "comissao_data_recebimento": "15/02/2024",
+    "status": "Liquidado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 3,
+      "unidade_imobiliaria_id": 16,
+      "valor_total": 95000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "789.012.345-67",
+        "nome": "Gabriela Cruz Ramos",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "15/02/2024",
+        "data_pagamento": "15/02/2024",
+        "valor_parcela": 19000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Dinheiro"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "15/03/2024",
+        "data_pagamento": "15/03/2024",
+        "valor_parcela": 19000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Dinheiro"
+      },
+      {
+        "_id": 3,
+        "data_vencimento": "15/04/2024",
+        "data_pagamento": "15/04/2024",
+        "valor_parcela": 19000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      },
+      {
+        "_id": 4,
+        "data_vencimento": "15/05/2024",
+        "data_pagamento": "15/05/2024",
+        "valor_parcela": 19000.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      }
+    ]
+  },
+
+  {
+    "_id": 8,
+    "vendedor": {
+      "vendedor_id": 4,
+      "nome": "Simone Barbosa Cunha"
+    },
+    "data_venda": "25/02/2024",
+    "data_pagamento_entrada": "20/02/2024",
+    "quantidade_parcelas": 6,
+    "valor_entrada": 19600.0,
+    "valor_venda": 98000.0,
+    "comissao_vendedor": 980,
+    "comissao_data_recebimento": "25/03/2024",
+    "status": "Financiado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 3,
+      "unidade_imobiliaria_id": 17,
+      "valor_total": 98000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "890.123.456-78",
+        "nome": "Henrique Lima Borges",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "25/03/2024",
+        "data_pagamento": "25/03/2024",
+        "valor_parcela": 13066.67,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "25/04/2024",
+        "data_pagamento": "25/04/2024",
+        "valor_parcela": 13066.67,
+        "juros": 100.0,
+        "forma_pagamento": "Boleto"
+      }
+    ]
+  },
+
+  {
+    "_id": 9,
+    "vendedor": {
+      "vendedor_id": 5,
+      "nome": "Tiago Nascimento Freitas"
+    },
+    "data_venda": "10/04/2024",
+    "data_pagamento_entrada": "05/04/2024",
+    "quantidade_parcelas": 8,
+    "valor_entrada": 26000.0,
+    "valor_venda": 260000.0,
+    "comissao_vendedor": 2600,
+    "comissao_data_recebimento": "10/05/2024",
+    "status": "Liquidado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 4,
+      "unidade_imobiliaria_id": 25,
+      "valor_total": 260000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "901.234.567-89",
+        "nome": "Isabela Gomes Dias",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": [
+      {
+        "_id": 1,
+        "data_vencimento": "10/05/2024",
+        "data_pagamento": "10/05/2024",
+        "valor_parcela": 29250.0,
+        "juros": 0.0,
+        "forma_pagamento": "Transferencia"
+      },
+      {
+        "_id": 2,
+        "data_vencimento": "10/06/2024",
+        "data_pagamento": "10/06/2024",
+        "valor_parcela": 29250.0,
+        "juros": 0.0,
+        "forma_pagamento": "Boleto"
+      }
+    ]
+  },
+
+  {
+    "_id": 10,
+    "vendedor": {
+      "vendedor_id": 5,
+      "nome": "Tiago Nascimento Freitas"
+    },
+    "data_venda": "05/06/2024",
+    "data_pagamento_entrada": "01/06/2024",
+    "quantidade_parcelas": 5,
+    "valor_entrada": 21000.0,
+    "valor_venda": 210000.0,
+    "comissao_vendedor": 2100,
+    "comissao_data_recebimento": "05/07/2024",
+    "status": "Financiado",
+    "unidade_imobiliaria": {
+      "empreendimento_id": 6,
+      "unidade_imobiliaria_id": 40,
+      "valor_total": 210000.0
+    },
+    "cliente": [
+      {
+        "cliente_id": "012.345.678-90",
+        "nome": "João Victor Teixeira",
+        "responsavel_financeiro": true
+      }
+    ],
+    "parcela": []
+  }
+]

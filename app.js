@@ -1,6 +1,6 @@
 const express = require('express');
-const rotaVenda = require("./routes/src/venda-route");
-const rotaPagamento = require("./routes/src/pagamento-route");
+const rotaVenda = require("./src/routes/venda.route");
+const rotaPagamento = require("./src/routes/pagamento.route");
 
 
 const app = express();
@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.use('/vendas', rotaVenda);
 
-app.use('/favoritos', rotaPagamento);
+app.use('/pagamentos', rotaPagamento);
 
 
 app.listen(port, () => {

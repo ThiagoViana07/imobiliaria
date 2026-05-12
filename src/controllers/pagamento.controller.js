@@ -1,94 +1,90 @@
-const { getAllPagamentos, getPagamentoById, insertPagamento, deletePagamento } = require('../services/pagamento.service') 
+const { getAllPagamentos, getPagamentoById, insertPagamento, deletePagamento, editPagamento } = require('../services/pagamento.service')
+const { validatePagamentoInput, validatePagamentoUpdateInput } = require("../validations/pagamento.validation");
 
+async function obterPagamento(req, res) {
+    try {
+        const id = Number(req.params.id);
+        if (!id) return res.status(400).json({ erro: "Id inválido" });
 
-async function obterPagamento(req, res){
+        const pagamento = await getPagamentoById(id);
+        res.status(200).json(pagamento);
 
-    try{
-        const id = req.params.id
-        if(id && Number(id)){
-            const pagamento = await getPagamentoById(id)
-            res.send(pagamento)
-        }
-        else{
-            res.status(402)
-            res.send("Id inválido")
-        }
-        
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+    } catch (error) {
+        const status = error.message.includes('não encontrado') ? 404 : 500;
+        res.status(status).json({ erro: error.message });
     }
 }
 
-async function obterPagamentos(req, res){
+async function obterPagamentos(req, res) {
+    try {
+        const pagamentos = await getAllPagamentos();
+        res.status(200).json(pagamentos);
 
-    try{
-        const pagamentos = await getAllPagamentos()
-        res.send(pagamentos)
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
-    }
-    
-}
-
-async function cadastrarPagamento(req, res){
-
-    try{
-        const novoPagamento = req.body
-        if(novoPagamento){
-            
-            await insertPagamento(novoPagamento)
-            res.status(201)
-            res.send("Pagamento inserido com sucesso")
-        }  
-
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+    } catch (error) {
+        res.status(500).json({ erro: error.message });
     }
 }
 
-async function deletarPagamento(req, res){
 
-    try{
-        const id = req.params.id
-        if(id && Number(id)){
-            await deletePagamento(id)
-            res.status(201)
-            res.send("Pagamento deletado com sucesso")
-        }
-        else{
-            res.status(422)
-            res.send("Id inválido")
+async function cadastrarPagamento(req, res) {
+    try {
+        const novoPagamento = req.body;
+        if (!novoPagamento || Object.keys(novoPagamento).length === 0) {
+            return res.status(400).json({ erro: "Corpo da requisição inválido ou vazio" });
         }
 
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+        const errors = validatePagamentoInput(novoPagamento);
+        if (errors.length > 0) {
+            return res.status(400).json({ erros: errors });
+        }
+
+        await insertPagamento(novoPagamento);
+        res.status(201).json({ mensagem: "Pagamento inserido com sucesso" });
+
+    } catch (error) {
+        res.status(500).json({ erro: error.message });
     }
 }
 
-async function editarPagamento(req, res){
+async function editarPagamento(req, res) {
+    try {
+        const id = Number(req.params.id);
+        if (!id) return res.status(400).json({ erro: "Id inválido" });
 
-    try{
-        const id = req.params.id
-        if(id && Number(id)){
-            const body = req.body;
-            await editPagamento(body, id)
-            res.status(201)
-            res.send("Pagamento atualizado com sucesso")
-        }
-        else{
-            res.status(422)
-            res.send("Id inválido")
+        const body = req.body;
+        if (!body || Object.keys(body).length === 0) {
+            return res.status(400).json({ erro: "Corpo da requisição inválido ou vazio" });
         }
 
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+        const errors = validatePagamentoUpdateInput(body);
+        if (errors.length > 0) {
+            return res.status(400).json({ erros: errors });
+        }
+
+        await editPagamento(body, id);
+        res.status(200).json({ mensagem: "Pagamento atualizado com sucesso" });
+
+    } catch (error) {
+        const status = error.message.includes('não encontrado') ? 404 : 500;
+        res.status(status).json({ erro: error.message });
     }
 }
+
+
+async function deletarPagamento(req, res) {
+    try {
+        const id = Number(req.params.id);
+        if (!id) return res.status(400).json({ erro: "Id inválido" });
+
+        await deletePagamento(id);
+        res.status(200).json({ mensagem: "Pagamento deletado com sucesso" });
+
+    } catch (error) {
+        const status = error.message.includes('não encontrado') ? 404 : 500;
+        res.status(status).json({ erro: error.message });
+    }
+}
+
 
 
 module.exports = {

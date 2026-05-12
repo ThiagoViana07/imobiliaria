@@ -1,92 +1,89 @@
-const { getAllVendas, getVendaById, insertVenda, deleteVenda, editVenda } = require('../services/venda.service') 
+const { getAllVendas, getVendaById, insertVenda, deleteVenda, editVenda } = require('../services/venda.service')
+const { validateVendaInput, validateVendaUpdateInput } = require("../validations/venda.validation");
 
+async function obterVenda(req, res) {
+    try {
+        const id = Number(req.params.id);
+        if (!id) return res.status(400).json({ erro: "Id inválido" });
 
-async function obterVenda(req, res){
+        const venda = await getVendaById(id);
+        res.status(200).json(venda);
 
-    try{
-        const id = req.params.id
-        if(id && Number(id)){
-            const venda = await getVendaById(id)
-            res.send(venda)
-        }
-        else{
-            res.status(402)
-            res.send("Id inválido")
-        }
-        
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+    } catch (error) {
+        const status = error.message.includes('não encontrada') ? 404 : 500;
+        res.status(status).json({ erro: error.message });
     }
 }
 
-async function obterVendas(req, res){
+async function obterVendas(req, res) {
+    try {
+        const vendas = await getAllVendas();
+        res.status(200).json(vendas);
 
-    try{
-        const vendas = await getAllVendas()
-        res.send(vendas)
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
-    }
-    
-}
-
-async function cadastrarVenda(req, res){
-
-    try{
-        const novaVenda = req.body
-        if(novaVenda){
-            
-            await insertVenda(novaVenda)
-            res.status(201)
-            res.send("Venda cadastrada com sucesso")
-        }  
-
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+    } catch (error) {
+        res.status(500).json({ erro: error.message });
     }
 }
 
-async function deletarVenda(req, res){
+// Validations Inicio
 
-    try{
-        const id = req.params.id
-        if(id && Number(id)){
-            await deleteVenda(id)
-            res.status(201)
-            res.send("Livro deletado com sucesso")
-        }
-        else{
-            res.status(422)
-            res.send("Id inválido")
+async function cadastrarVenda(req, res) {
+    try {
+        const novaVenda = req.body;
+        if (!novaVenda || Object.keys(novaVenda).length === 0) {
+            return res.status(400).json({ erro: "Corpo da requisição inválido ou vazio" });
         }
 
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+        const errors = validateVendaInput(novaVenda);
+        if (errors.length > 0) {
+            return res.status(400).json({ erros: errors });
+        }
+
+        await insertVenda(novaVenda);
+        res.status(201).json({ mensagem: "Venda cadastrada com sucesso" });
+
+    } catch (error) {
+        res.status(500).json({ erro: error.message });
     }
 }
 
-async function editarVenda(req, res){
+async function editarVenda(req, res) {
+    try {
+        const id = Number(req.params.id);
+        if (!id) return res.status(400).json({ erro: "Id inválido" });
 
-    try{
-        const id = req.params.id
-        if(id && Number(id)){
-            const body = req.body;
-            await editVenda(body, id)
-            res.status(201)
-            res.send("Venda atualizada com sucesso")
-        }
-        else{
-            res.status(422)
-            res.send("Id inválido")
+        const body = req.body;
+        if (!body || Object.keys(body).length === 0) {
+            return res.status(400).json({ erro: "Corpo da requisição inválido ou vazio" });
         }
 
-    } catch(error){
-        res.status(500)
-        res.send(error.message)
+        const errors = validateVendaUpdateInput(body);
+        if (errors.length > 0) {
+            return res.status(400).json({ erros: errors });
+        }
+
+        await editVenda(body, id);
+        res.status(200).json({ mensagem: "Venda atualizada com sucesso" });
+
+    } catch (error) {
+        const status = error.message.includes('não encontrada') ? 404 : 500;
+        res.status(status).json({ erro: error.message });
+    }
+}
+
+// Validations FIM
+
+async function deletarVenda(req, res) {
+    try {
+        const id = Number(req.params.id);
+        if (!id) return res.status(400).json({ erro: "Id inválido" });
+
+        await deleteVenda(id);
+        res.status(200).json({ mensagem: "Venda deletada com sucesso" });
+
+    } catch (error) {
+        const status = error.message.includes('não encontrada') ? 404 : 500;
+        res.status(status).json({ erro: error.message });
     }
 }
 

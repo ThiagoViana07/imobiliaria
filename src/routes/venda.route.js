@@ -1,7 +1,11 @@
+const {  obterVenda, 
+    obterVendas, 
+    cadastrarVenda, 
+    deletarVenda, 
+    editarVenda  
+} = require("../controllers/venda.controller")
+
 const { Router } = require('express');
-const {  obterVenda, obterVendas, cadastrarVenda, deletarVenda, editarVenda  } = require("../controllers/venda.controller")
-
-
 const router = Router();
 
 router.get('/', obterVendas)

@@ -118,7 +118,6 @@ const criarCliente = async (req, res) => {
         errors: validationErrors,
       });
     }
-
     const novoCliente = inserirCliente(clienteData);
     res.status(201).json({
       success: true,

@@ -16,11 +16,14 @@ import {
 
 import { validateCPF } from '../validations/common.validation.js';
 
+import mongoose from 'mongoose';
+const { ObjectId } = mongoose.Types;
+
 // ========== CONTROLLER FUNCTIONS ==========
 
 const getClientes = async (req, res) => {
   try {
-    const clientes = getTodosClientes();
+    const clientes = await getTodosClientes();
     res.status(200).json({
       success: true,
       data: clientes,
@@ -40,14 +43,14 @@ const getCliente = async (req, res) => {
   try {
     const { id } = req.params;
 
-    if (!id || isNaN(parseInt(id))) {
+    if (!id || !ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        message: 'ID do cliente deve ser um número válido',
+        message: 'ID do cliente deve ser um ID válido',
       });
     }
 
-    const cliente = getClienteById(parseInt(id));
+    const cliente = await getClienteById(id);
     res.status(200).json({
       success: true,
       data: cliente,
@@ -81,7 +84,7 @@ const getClientePorCpf = async (req, res) => {
       });
     }
 
-    const cliente = getClienteByCpf(cpf);
+    const cliente = await getClienteByCpf(cpf);
     res.status(200).json({
       success: true,
       data: cliente,
@@ -117,7 +120,7 @@ const criarCliente = async (req, res) => {
         errors: validationErrors,
       });
     }
-    const novoCliente = inserirCliente(clienteData);
+    const novoCliente = await inserirCliente(clienteData);
     res.status(201).json({
       success: true,
       message: 'Cliente criado com sucesso',
@@ -146,10 +149,10 @@ const atualizarCliente = async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
 
-    if (!id || isNaN(parseInt(id))) {
+    if (!id || !ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        message: 'ID do cliente deve ser um número válido',
+        message: 'ID do cliente deve ser um ID válido',
       });
     }
 
@@ -163,7 +166,7 @@ const atualizarCliente = async (req, res) => {
       });
     }
 
-    const clienteAtualizado = modificarCliente(parseInt(id), updateData);
+    const clienteAtualizado = await modificarCliente(id, updateData);
     res.status(200).json({
       success: true,
       message: 'Cliente atualizado com sucesso',
@@ -198,14 +201,14 @@ const excluirCliente = async (req, res) => {
   try {
     const { id } = req.params;
 
-    if (!id || isNaN(parseInt(id))) {
+    if (!id || !ObjectId.isValid(id)) {
       return res.status(400).json({
         success: false,
-        message: 'ID do cliente deve ser um número válido',
+        message: 'ID do cliente deve ser um ID válido',
       });
     }
 
-    const clienteDeletado = deletarCliente(parseInt(id));
+    const clienteDeletado = await deletarCliente(id);
     res.status(200).json({
       success: true,
       message: 'Cliente excluído com sucesso',

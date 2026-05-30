@@ -44,7 +44,7 @@ async function getVendedor(req, res) {
 async function postVendedor(req, res) {
   try {
     const novoVendedor = req.body;
-
+    // Valida os dados antes de prosseguir
     const validationErros = validateVendedorInput(novoVendedor);
     if (validationErros.length > 0) {
       return res.status(400).json({
@@ -55,12 +55,17 @@ async function postVendedor(req, res) {
     }
 
     // Criando ID simples em string, mantendo compatibilidade com seu JSON
-    novoVendedor.id = Date.now().toString();
+    //novoVendedor.id = Date.now().toString();
+    // A linha que criava o ID (Date.now()) foi removida daqui! O MongoDB Atlas fará isso sozinho.
 
-    await insereVendedor(novoVendedor);
+    // O Mongoose salva o vendedor e nós guardamos a resposta dele (que já inclui o _id gerado) na variável vendedorSalvo
+    const vendedorSalvo = await insereVendedor(novoVendedor);
+    //como estava antes
+    //await insereVendedor(novoVendedor);
     res.status(201).json({
       mensagem: 'Solicitação deferida. Vendedor criado com sucesso!',
-      vendedor: novoVendedor,
+      //vendedor: novoVendedor,
+      vendedor: vendedorSalvo,
     });
   } catch (error) {
     res.status(500).json({ erro: error.message });

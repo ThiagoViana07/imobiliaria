@@ -1,8 +1,7 @@
 [
   {
-    "_id": 1,
     "vendedor": {
-      "vendedor_id": 1,
+      "vendedor_id": "6a1af28dc2f7e4f7e067b41e",
       "nome": "Marcos Vinicius Pereira"
     },
     "data_venda": "15/01/2023",
@@ -14,8 +13,8 @@
     "comissao_data_recebimento": "15/02/2023",
     "status": "Liquidado",
     "unidade_imobiliaria": {
-      "empreendimento_id": 1,
-      "unidade_imobiliaria_id": 1,
+      "empreendimento_id": "6a1ae2a8e4a18e6689337cdf",
+      "unidade_imobiliaria_id": "'6a1aec4f433d6539f2772e1c'",
       "valor_total": 320000.0
     },
     "cliente": [
@@ -27,7 +26,6 @@
     ],
     "parcela": [
       {
-        "_id": 1,
         "data_vencimento": "15/02/2023",
         "data_pagamento": "15/02/2023",
         "valor_parcela": 48000.0,
@@ -35,7 +33,7 @@
         "forma_pagamento": "Boleto"
       },
       {
-        "_id": 2,
+
         "data_vencimento": "15/03/2023",
         "data_pagamento": "15/03/2023",
         "valor_parcela": 48000.0,
@@ -43,7 +41,7 @@
         "forma_pagamento": "Boleto"
       },
       {
-        "_id": 3,
+
         "data_vencimento": "15/04/2023",
         "data_pagamento": "15/04/2023",
         "valor_parcela": 48000.0,
@@ -54,9 +52,8 @@
   },
 
   {
-    "_id": 2,
     "vendedor": {
-      "vendedor_id": 1,
+      "vendedor_id": "6a1af28dc2f7e4f7e067b41e",
       "nome": "Marcos Vinicius Pereira"
     },
     "data_venda": "10/03/2023",
@@ -68,8 +65,8 @@
     "comissao_data_recebimento": "10/04/2023",
     "status": "Financiado",
     "unidade_imobiliaria": {
-      "empreendimento_id": 1,
-      "unidade_imobiliaria_id": 2,
+      "empreendimento_id": "6a1ae2a8e4a18e6689337cdf",
+      "unidade_imobiliaria_id": "6a1aed37433d6539f2772e1e",
       "valor_total": 310000.0
     },
     "cliente": [
@@ -86,7 +83,6 @@
     ],
     "parcela": [
       {
-        "_id": 1,
         "data_vencimento": "10/04/2023",
         "data_pagamento": "10/04/2023",
         "valor_parcela": 27900.0,
@@ -94,7 +90,6 @@
         "forma_pagamento": "Boleto"
       },
       {
-        "_id": 2,
         "data_vencimento": "10/05/2023",
         "data_pagamento": "10/05/2023",
         "valor_parcela": 27900.0,
@@ -105,9 +100,8 @@
   },
 
   {
-    "_id": 3,
     "vendedor": {
-      "vendedor_id": 2,
+      "vendedor_id": "6a1af298c2f7e4f7e067b41f",
       "nome": "Patrícia Lopes Figueira"
     },
     "data_venda": "25/05/2023",
@@ -119,8 +113,8 @@
     "comissao_data_recebimento": "25/06/2023",
     "status": "Distratado",
     "unidade_imobiliaria": {
-      "empreendimento_id": 1,
-      "unidade_imobiliaria_id": 3,
+      "empreendimento_id": "6a1ae2a8e4a18e6689337cdf",
+      "unidade_imobiliaria_id": "6a1aed44433d6539f2772e1f",
       "valor_total": 290000.0
     },
     "cliente": [
@@ -132,7 +126,6 @@
     ],
     "parcela": [
       {
-        "_id": 1,
         "data_vencimento": "25/07/2023",
         "data_pagamento": "25/07/2023",
         "valor_parcela": 32625.0,
@@ -140,7 +133,6 @@
         "forma_pagamento": "Boleto"
       },
       {
-        "_id": 2,
         "data_vencimento": "25/08/2023",
         "data_pagamento": "25/08/2023",
         "valor_parcela": 32625.0,
@@ -151,9 +143,8 @@
   },
 
   {
-    "_id": 4,
     "vendedor": {
-      "vendedor_id": 2,
+      "vendedor_id": "6a1af298c2f7e4f7e067b41f",
       "nome": "Patrícia Lopes Figueira"
     },
     "data_venda": "05/07/2023",
@@ -165,8 +156,8 @@
     "comissao_data_recebimento": "05/08/2023",
     "status": "Liquidado",
     "unidade_imobiliaria": {
-      "empreendimento_id": 2,
-      "unidade_imobiliaria_id": 9,
+      "empreendimento_id": "6a1ae2a8e4a18e6689337cdf",
+      "unidade_imobiliaria_id": "6a1aed44433d6539f2772e1f",
       "valor_total": 480000.0
     },
     "cliente": [
@@ -178,7 +169,6 @@
     ],
     "parcela": [
       {
-        "_id": 1,
         "data_vencimento": "05/07/2023",
         "data_pagamento": "05/07/2023",
         "valor_parcela": 480000.0,
@@ -189,9 +179,8 @@
   },
 
   {
-    "_id": 5,
     "vendedor": {
-      "vendedor_id": 3,
+      "vendedor_id": "6a1af2a0c2f7e4f7e067b420",
       "nome": "Ricardo Azevedo Melo"
     },
     "data_venda": "20/08/2023",
@@ -203,8 +192,8 @@
     "comissao_data_recebimento": "20/09/2023",
     "status": "Financiado",
     "unidade_imobiliaria": {
-      "empreendimento_id": 2,
-      "unidade_imobiliaria_id": 10,
+      "empreendimento_id": "6a1ae2a8e4a18e6689337cdf",
+      "unidade_imobiliaria_id": "6a1aed44433d6539f2772e1f",
       "valor_total": 450000.0
     },
     "cliente": [
@@ -216,7 +205,7 @@
     ],
     "parcela": [
       {
-        "_id": 1,
+
         "data_vencimento": "20/09/2023",
         "data_pagamento": "20/09/2023",
         "valor_parcela": 67500.0,
@@ -224,7 +213,6 @@
         "forma_pagamento": "Boleto"
       },
       {
-        "_id": 2,
         "data_vencimento": "20/10/2023",
         "data_pagamento": "20/10/2023",
         "valor_parcela": 67500.0,
@@ -237,7 +225,7 @@
   {
     "_id": 6,
     "vendedor": {
-      "vendedor_id": 3,
+      "vendedor_id": "6a1af2a0c2f7e4f7e067b420",
       "nome": "Ricardo Azevedo Melo"
     },
     "data_venda": "05/10/2023",

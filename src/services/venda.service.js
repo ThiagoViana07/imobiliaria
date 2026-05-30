@@ -50,7 +50,6 @@ async function deleteVenda(id) {
 async function editVenda(modificacoes, id) {
   try {
     await vendas.findByIdAndUpdate(id, modificacoes)
-    if (indice === -1) throw new Error(`Venda com id ${id} não encontrada`);
   } catch (err) {
     throw new Error(`Erro ao editar venda: ${err.message}`);
   }

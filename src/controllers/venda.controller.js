@@ -9,8 +9,6 @@ import { validateVendaInput, validateVendaUpdateInput } from '../validations/ven
 
 async function obterVenda(req, res) {
   try {
-    const id = Number(req.params.id);
-    if (!id) return res.status(400).json({ erro: 'Id inválido' });
 
     const venda = await getVendaById(id);
     res.status(200).json(venda);
@@ -52,8 +50,7 @@ async function cadastrarVenda(req, res) {
 
 async function editarVenda(req, res) {
   try {
-    const id = Number(req.params.id);
-    if (!id) return res.status(400).json({ erro: 'Id inválido' });
+    const id = req.params.id;
 
     const body = req.body;
     if (!body || Object.keys(body).length === 0) {
@@ -77,8 +74,7 @@ async function editarVenda(req, res) {
 
 async function deletarVenda(req, res) {
   try {
-    const id = Number(req.params.id);
-    if (!id) return res.status(400).json({ erro: 'Id inválido' });
+    const id = req.params.id;
 
     await deleteVenda(id);
     res.status(200).json({ mensagem: 'Venda deletada com sucesso' });

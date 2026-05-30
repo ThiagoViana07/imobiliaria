@@ -1,13 +1,12 @@
 import mongoose from "mongoose"
 
 const parcelaSchema = new mongoose.Schema({
-    _id: { type: Number, required: true },
     data_vencimento: { type: String, required: true },
     data_pagamento: { type: String, default: null },
     valor_parcela: { type: Number, required: true },
     juros: { type: Number, default: 0 },
     forma_pagamento: { type: String, required: true, enum: ['Boleto', 'Transferencia', 'Dinheiro', 'Cartao'] }
-}, { _id: false, versionKey: false });
+}, {  versionKey: false });
 
 const clienteSchema = new mongoose.Schema({
     cliente_id: { type: String, required: true },
@@ -17,7 +16,7 @@ const clienteSchema = new mongoose.Schema({
 
 const vendaSchema = new mongoose.Schema({
     vendedor: {
-        vendedor_id: { type: Number, required: true },
+        vendedor_id: { type: mongoose.SchemaTypes.ObjectId , required: true },
         nome: { type: String, required: true }
     },
     data_venda: { type: String, required: true },
@@ -33,8 +32,8 @@ const vendaSchema = new mongoose.Schema({
         enum: ['Liquidado', 'Transferido', 'Financiado', 'Distratado']
     },
     unidade_imobiliaria: {
-        empreendimento_id: { type: Number, required: true },
-        unidade_imobiliaria_id: { type: Number, required: true },
+        empreendimento_id: { type: mongoose.SchemaTypes.ObjectId, required: true },
+        unidade_imobiliaria_id: { type: mongoose.SchemaTypes.ObjectId, required: true },
         valor_total: { type: Number, required: true }
     },
     cliente: { type: [clienteSchema], required: true },

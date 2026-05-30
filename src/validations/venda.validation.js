@@ -151,12 +151,6 @@ const validateVendaInput = (venda) => {
             errors.push(`parcela[${index}].data_pagamento deve estar no formato DD/MM/YYYY`);
           }
         }
-        if (typeof parcela.valor_parcela !== 'number' || parcela.valor_parcela <= 0) {
-          errors.push(`parcela[${index}].valor_parcela deve ser um número positivo`);
-        }
-        if (typeof parcela.juros !== 'number' || parcela.juros < 0) {
-          errors.push(`parcela[${index}].juros deve ser um número positivo`);
-        }
         if (
           typeof parcela.forma_pagamento !== 'string' ||
           !FORMAS_PAGAMENTO_PERMITIDAS.includes(parcela.forma_pagamento)
@@ -246,12 +240,6 @@ const validateVendaUpdateInput = (updateData) => {
     }
   }
 
-  // quantidade_parcelas validation
-  if (updateData.quantidade_parcelas !== undefined) {
-    if (!Number.isInteger(updateData.quantidade_parcelas) || updateData.quantidade_parcelas <= 0) {
-      errors.push('quantidade_parcelas deve ser um número inteiro positivo');
-    }
-  }
 
   // status validation
   if (updateData.status !== undefined) {
@@ -308,9 +296,6 @@ const validateVendaUpdateInput = (updateData) => {
       errors.push('parcela deve ser um array');
     } else {
       updateData.parcela.forEach((parcela, index) => {
-        if (!Number.isInteger(parcela._id) || parcela._id <= 0) {
-          errors.push(`parcela[${index}]._id deve ser um número inteiro positivo`);
-        }
         if (
           typeof parcela.data_vencimento !== 'string' ||
           !validateDate(parcela.data_vencimento)

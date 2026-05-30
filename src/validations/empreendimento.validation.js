@@ -2,7 +2,7 @@ import { validateCEP } from './common.validation.js';
 
 const validateEmpreendimentoInput = (empreendimento) => {
   const errors = [];
-  const requiredFields = ['id', 'nome', 'cidade', 'bairro', 'estado', 'cep'];
+  const requiredFields = ['nome', 'cidade', 'bairro', 'estado', 'cep'];
 
   for (const field of requiredFields) {
     if (
@@ -15,10 +15,6 @@ const validateEmpreendimentoInput = (empreendimento) => {
   }
 
   if (errors.length > 0) return errors;
-
-  if (!Number.isInteger(empreendimento.id) || empreendimento.id <= 0) {
-    errors.push('Id deve ser um número inteiro positivo');
-  }
 
   if (typeof empreendimento.nome !== 'string' || empreendimento.nome.trim().length === 0) {
     errors.push('Nome deve ser uma string não vazia');

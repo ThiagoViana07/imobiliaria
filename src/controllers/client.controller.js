@@ -12,7 +12,7 @@ import {
 import {
   validateClientInput,
   validateClientUpdateInput,
-} from '../validations/vendedor.validation.js';
+} from '../validations/client.validation.js';
 
 import { validateCPF } from '../validations/common.validation.js';
 

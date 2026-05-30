@@ -2,20 +2,22 @@ import { validateDate } from './common.validation.js';
 
 // ========== VALIDATION FUNCTIONS ==========
 
-const STATUS_PERMITIDOS = ['Liquidado', 'Pendente', 'Cancelado'];
+const STATUS_PERMITIDOS = ['Liquidado', 'Transferido', 'Financiado', 'Distratado'];
+const FORMAS_PAGAMENTO_PERMITIDAS = ['Boleto', 'Transferencia', 'Dinheiro', 'Cartao'];
 
 const validateVendaInput = (venda) => {
   const errors = [];
 
   // Required fields validation
   const requiredFields = [
-    'vendedor_id',
-    'unidade_imobiliaria_id',
+    'vendedor',
+    'unidade_imobiliaria',
     'data_venda',
     'quantidade_parcelas',
     'status',
     'valor_entrada',
     'valor_venda',
+    'cliente',
   ];
 
   for (const field of requiredFields) {
@@ -26,14 +28,46 @@ const validateVendaInput = (venda) => {
 
   if (errors.length > 0) return errors;
 
-  // vendedor_id validation
-  if (!Number.isInteger(venda.vendedor_id) || venda.vendedor_id <= 0) {
-    errors.push('vendedor_id deve ser um número inteiro positivo');
+  // vendedor validation (objeto)
+  if (typeof venda.vendedor !== 'object' || Array.isArray(venda.vendedor)) {
+    errors.push('vendedor deve ser um objeto');
+  } else {
+
+    if (typeof venda.vendedor.nome !== 'string' || venda.vendedor.nome.trim() === '') {
+      errors.push('vendedor.nome deve ser uma string não vazia');
+    }
   }
 
-  // unidade_imobiliaria_id validation
-  if (!Number.isInteger(venda.unidade_imobiliaria_id) || venda.unidade_imobiliaria_id <= 0) {
-    errors.push('unidade_imobiliaria_id deve ser um número inteiro positivo');
+  // unidade_imobiliaria validation (objeto)
+  if (typeof venda.unidade_imobiliaria !== 'object' || Array.isArray(venda.unidade_imobiliaria)) {
+    errors.push('unidade_imobiliaria deve ser um objeto');
+  } else {
+
+    if (
+      typeof venda.unidade_imobiliaria.valor_total !== 'number' ||
+      venda.unidade_imobiliaria.valor_total <= 0
+    ) {
+      errors.push('unidade_imobiliaria.valor_total deve ser um número positivo');
+    }
+  }
+
+  // cliente validation (array)
+  if (!Array.isArray(venda.cliente) || venda.cliente.length === 0) {
+    errors.push('cliente deve ser um array com ao menos um elemento');
+  } else {
+    const responsaveis = venda.cliente.filter((c) => c.responsavel_financeiro === true);
+    if (responsaveis.length !== 1) {
+      errors.push('Exatamente um cliente deve ser marcado como responsavel_financeiro');
+    }
+
+    venda.cliente.forEach((cliente, index) => {
+      if (typeof cliente.nome !== 'string' || cliente.nome.trim() === '') {
+        errors.push(`cliente[${index}].nome deve ser uma string não vazia`);
+      }
+      if (typeof cliente.responsavel_financeiro !== 'boolean') {
+        errors.push(`cliente[${index}].responsavel_financeiro deve ser um booleano`);
+      }
+    });
   }
 
   // data_venda validation
@@ -80,17 +114,58 @@ const validateVendaInput = (venda) => {
     errors.push('valor_entrada não pode ser maior que valor_venda');
   }
 
-  // comissao validation (opcional)
-  if (venda.comissao !== undefined && venda.comissao !== null) {
-    if (typeof venda.comissao !== 'number' || venda.comissao < 0) {
-      errors.push('comissao deve ser um número positivo');
+  // comissao_vendedor validation (opcional)
+  if (venda.comissao_vendedor !== undefined && venda.comissao_vendedor !== null) {
+    if (typeof venda.comissao_vendedor !== 'number' || venda.comissao_vendedor < 0) {
+      errors.push('comissao_vendedor deve ser um número positivo');
     }
   }
 
-  // data_comissao validation (opcional)
-  if (venda.data_comissao !== undefined && venda.data_comissao !== null) {
-    if (typeof venda.data_comissao !== 'string' || !validateDate(venda.data_comissao)) {
-      errors.push('data_comissao deve estar no formato DD/MM/YYYY');
+  // comissao_data_recebimento validation (opcional)
+  if (venda.comissao_data_recebimento !== undefined && venda.comissao_data_recebimento !== null) {
+    if (
+      typeof venda.comissao_data_recebimento !== 'string' ||
+      !validateDate(venda.comissao_data_recebimento)
+    ) {
+      errors.push('comissao_data_recebimento deve estar no formato DD/MM/YYYY');
+    }
+  }
+
+  // parcela validation (opcional)
+  if (venda.parcela !== undefined && venda.parcela !== null) {
+    if (!Array.isArray(venda.parcela)) {
+      errors.push('parcela deve ser um array');
+    } else {
+      venda.parcela.forEach((parcela, index) => {
+        if (
+          typeof parcela.data_vencimento !== 'string' ||
+          !validateDate(parcela.data_vencimento)
+        ) {
+          errors.push(`parcela[${index}].data_vencimento deve estar no formato DD/MM/YYYY`);
+        }
+        if (parcela.data_pagamento !== undefined && parcela.data_pagamento !== null) {
+          if (
+            typeof parcela.data_pagamento !== 'string' ||
+            !validateDate(parcela.data_pagamento)
+          ) {
+            errors.push(`parcela[${index}].data_pagamento deve estar no formato DD/MM/YYYY`);
+          }
+        }
+        if (typeof parcela.valor_parcela !== 'number' || parcela.valor_parcela <= 0) {
+          errors.push(`parcela[${index}].valor_parcela deve ser um número positivo`);
+        }
+        if (typeof parcela.juros !== 'number' || parcela.juros < 0) {
+          errors.push(`parcela[${index}].juros deve ser um número positivo`);
+        }
+        if (
+          typeof parcela.forma_pagamento !== 'string' ||
+          !FORMAS_PAGAMENTO_PERMITIDAS.includes(parcela.forma_pagamento)
+        ) {
+          errors.push(
+            `parcela[${index}].forma_pagamento deve ser um dos seguintes valores: ${FORMAS_PAGAMENTO_PERMITIDAS.join(', ')}`
+          );
+        }
+      });
     }
   }
 
@@ -100,26 +175,57 @@ const validateVendaInput = (venda) => {
 const validateVendaUpdateInput = (updateData) => {
   const errors = [];
 
-  // Check if there's at least one field to update
   if (Object.keys(updateData).length === 0) {
     errors.push('Pelo menos um campo deve ser fornecido para atualização');
     return errors;
   }
 
-  // vendedor_id validation
-  if (updateData.vendedor_id !== undefined) {
-    if (!Number.isInteger(updateData.vendedor_id) || updateData.vendedor_id <= 0) {
-      errors.push('vendedor_id deve ser um número inteiro positivo');
+  // vendedor validation
+  if (updateData.vendedor !== undefined) {
+    if (typeof updateData.vendedor !== 'object' || Array.isArray(updateData.vendedor)) {
+      errors.push('vendedor deve ser um objeto');
+    } else {
+      if (typeof updateData.vendedor.nome !== 'string' || updateData.vendedor.nome.trim() === '') {
+        errors.push('vendedor.nome deve ser uma string não vazia');
+      }
     }
   }
 
-  // unidade_imobiliaria_id validation
-  if (updateData.unidade_imobiliaria_id !== undefined) {
+  // unidade_imobiliaria validation
+  if (updateData.unidade_imobiliaria !== undefined) {
     if (
-      !Number.isInteger(updateData.unidade_imobiliaria_id) ||
-      updateData.unidade_imobiliaria_id <= 0
+      typeof updateData.unidade_imobiliaria !== 'object' ||
+      Array.isArray(updateData.unidade_imobiliaria)
     ) {
-      errors.push('unidade_imobiliaria_id deve ser um número inteiro positivo');
+      errors.push('unidade_imobiliaria deve ser um objeto');
+    } else {
+      if (
+        typeof updateData.unidade_imobiliaria.valor_total !== 'number' ||
+        updateData.unidade_imobiliaria.valor_total <= 0
+      ) {
+        errors.push('unidade_imobiliaria.valor_total deve ser um número positivo');
+      }
+    }
+  }
+
+  // cliente validation
+  if (updateData.cliente !== undefined) {
+    if (!Array.isArray(updateData.cliente) || updateData.cliente.length === 0) {
+      errors.push('cliente deve ser um array com ao menos um elemento');
+    } else {
+      const responsaveis = updateData.cliente.filter((c) => c.responsavel_financeiro === true);
+      if (responsaveis.length !== 1) {
+        errors.push('Exatamente um cliente deve ser marcado como responsavel_financeiro');
+      }
+
+      updateData.cliente.forEach((cliente, index) => {
+        if (typeof cliente.nome !== 'string' || cliente.nome.trim() === '') {
+          errors.push(`cliente[${index}].nome deve ser uma string não vazia`);
+        }
+        if (typeof cliente.responsavel_financeiro !== 'boolean') {
+          errors.push(`cliente[${index}].responsavel_financeiro deve ser um booleano`);
+        }
+      });
     }
   }
 
@@ -131,10 +237,7 @@ const validateVendaUpdateInput = (updateData) => {
   }
 
   // data_pagamento_entrada validation
-  if (
-    updateData.data_pagamento_entrada !== undefined &&
-    updateData.data_pagamento_entrada !== null
-  ) {
+  if (updateData.data_pagamento_entrada !== undefined && updateData.data_pagamento_entrada !== null) {
     if (
       typeof updateData.data_pagamento_entrada !== 'string' ||
       !validateDate(updateData.data_pagamento_entrada)
@@ -171,7 +274,7 @@ const validateVendaUpdateInput = (updateData) => {
     }
   }
 
-  // valor_entrada não pode ser maior que valor_venda (apenas se ambos forem atualizados juntos)
+  // valor_entrada não pode ser maior que valor_venda
   if (
     updateData.valor_entrada !== undefined &&
     updateData.valor_venda !== undefined &&
@@ -182,17 +285,61 @@ const validateVendaUpdateInput = (updateData) => {
     errors.push('valor_entrada não pode ser maior que valor_venda');
   }
 
-  // comissao validation
-  if (updateData.comissao !== undefined && updateData.comissao !== null) {
-    if (typeof updateData.comissao !== 'number' || updateData.comissao < 0) {
-      errors.push('comissao deve ser um número positivo');
+  // comissao_vendedor validation
+  if (updateData.comissao_vendedor !== undefined && updateData.comissao_vendedor !== null) {
+    if (typeof updateData.comissao_vendedor !== 'number' || updateData.comissao_vendedor < 0) {
+      errors.push('comissao_vendedor deve ser um número positivo');
     }
   }
 
-  // data_comissao validation
-  if (updateData.data_comissao !== undefined && updateData.data_comissao !== null) {
-    if (typeof updateData.data_comissao !== 'string' || !validateDate(updateData.data_comissao)) {
-      errors.push('data_comissao deve estar no formato DD/MM/YYYY');
+  // comissao_data_recebimento validation
+  if (updateData.comissao_data_recebimento !== undefined && updateData.comissao_data_recebimento !== null) {
+    if (
+      typeof updateData.comissao_data_recebimento !== 'string' ||
+      !validateDate(updateData.comissao_data_recebimento)
+    ) {
+      errors.push('comissao_data_recebimento deve estar no formato DD/MM/YYYY');
+    }
+  }
+
+  // parcela validation
+  if (updateData.parcela !== undefined && updateData.parcela !== null) {
+    if (!Array.isArray(updateData.parcela)) {
+      errors.push('parcela deve ser um array');
+    } else {
+      updateData.parcela.forEach((parcela, index) => {
+        if (!Number.isInteger(parcela._id) || parcela._id <= 0) {
+          errors.push(`parcela[${index}]._id deve ser um número inteiro positivo`);
+        }
+        if (
+          typeof parcela.data_vencimento !== 'string' ||
+          !validateDate(parcela.data_vencimento)
+        ) {
+          errors.push(`parcela[${index}].data_vencimento deve estar no formato DD/MM/YYYY`);
+        }
+        if (parcela.data_pagamento !== undefined && parcela.data_pagamento !== null) {
+          if (
+            typeof parcela.data_pagamento !== 'string' ||
+            !validateDate(parcela.data_pagamento)
+          ) {
+            errors.push(`parcela[${index}].data_pagamento deve estar no formato DD/MM/YYYY`);
+          }
+        }
+        if (typeof parcela.valor_parcela !== 'number' || parcela.valor_parcela <= 0) {
+          errors.push(`parcela[${index}].valor_parcela deve ser um número positivo`);
+        }
+        if (typeof parcela.juros !== 'number' || parcela.juros < 0) {
+          errors.push(`parcela[${index}].juros deve ser um número positivo`);
+        }
+        if (
+          typeof parcela.forma_pagamento !== 'string' ||
+          !FORMAS_PAGAMENTO_PERMITIDAS.includes(parcela.forma_pagamento)
+        ) {
+          errors.push(
+            `parcela[${index}].forma_pagamento deve ser um dos seguintes valores: ${FORMAS_PAGAMENTO_PERMITIDAS.join(', ')}`
+          );
+        }
+      });
     }
   }
 

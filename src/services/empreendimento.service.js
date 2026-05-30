@@ -1,9 +1,12 @@
 import fs from 'fs';
 const caminhoArquivo = 'empreendimentos.json';
+import empreendimentos from "../models/empreendimentos.js"
 
 async function getTodosEmpreendimentos() {
-  const dados = await fs.promises.readFile(caminhoArquivo, 'utf-8');
-  return JSON.parse(dados);
+  // const dados = await fs.promises.readFile(caminhoArquivo, 'utf-8');
+  // return JSON.parse(dados);
+  const listaEmpreendimentos = await empreendimentos.find({})
+  return listaEmpreendimentos;
 }
 
 async function getEmpreendimentoPorId(id) {

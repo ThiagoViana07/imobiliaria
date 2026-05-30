@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const unidadeImobiliariaSchema = new mongoose.Schema(
+const unidadesImobiliariasSchema = new mongoose.Schema(
   {
     id: { type: mongoose.Schema.Types.ObjectId },
     empreendimento_id: { type: mongoose.Schema.Types.ObjectId, ref: 'empreendimentos' },
@@ -14,5 +14,5 @@ const unidadeImobiliariaSchema = new mongoose.Schema(
   { versionKey: false },
 );
 
-const unidadeImobiliaria = mongoose.model('unidadeImobiliaria', unidadeImobiliariaSchema);
-export default unidadeImobiliaria;
+const unidadesImobiliarias = mongoose.model('unidades-imobiliarias', unidadesImobiliariasSchema);
+export default unidadesImobiliarias;

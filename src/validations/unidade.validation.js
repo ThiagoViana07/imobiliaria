@@ -4,7 +4,6 @@ const validateUnidadeInput = (unidade) => {
   const errors = [];
   const requiredFields = [
     'empreendimento_id',
-    'id',
     'numero',
     'quadra',
     'valor',
@@ -20,14 +19,6 @@ const validateUnidadeInput = (unidade) => {
   }
 
   if (errors.length > 0) return errors;
-
-  if (!Number.isInteger(unidade.id) || unidade.id <= 0) {
-    errors.push('Id deve ser um número inteiro positivo');
-  }
-
-  if (!Number.isInteger(unidade.empreendimento_id) || unidade.empreendimento_id <= 0) {
-    errors.push('Id do empreendimento deve ser um número inteiro positivo');
-  }
 
   return errors;
 };

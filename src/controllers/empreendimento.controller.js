@@ -23,7 +23,7 @@ async function getEmpreendimentos(req, res) {
 async function getEmpreendimento(req, res) {
   try {
     const id = req.params.id;
-    if (id && Number(id)) {
+    if (id) {
       const empreendimento = await getEmpreendimentoPorId(id);
       res.status(200).json(empreendimento);
     } else {
@@ -63,7 +63,7 @@ async function patchEmpreendimento(req, res) {
   try {
     const id = req.params.id;
 
-    if (id && Number(id)) {
+    if (id) {
       const body = req.body;
       const validationErros = validateEmpreendimentoUpdateInput(body);
 
@@ -88,7 +88,7 @@ async function patchEmpreendimento(req, res) {
 async function deleteEmpreendimento(req, res) {
   try {
     const id = req.params.id;
-    if (id && Number(id)) {
+    if (id) {
       await deletarEmpreendimentoPorId(id);
       res.status(200).json({ mensagem: 'Empreendimento deletado com sucesso' });
     } else {

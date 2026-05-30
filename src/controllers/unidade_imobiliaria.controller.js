@@ -23,7 +23,7 @@ async function getUnidades(req, res) {
 async function getUnidade(req, res) {
   try {
     const id = req.params.id;
-    if (id && Number(id)) {
+    if (id) {
       const unidade = await getUnidadePorId(id);
       res.status(200).json(unidade);
     } else {
@@ -61,7 +61,7 @@ async function patchUnidade(req, res) {
   try {
     const id = req.params.id;
 
-    if (id && Number(id)) {
+    if (id) {
       const body = req.body;
       const validationErros = validateUnidadeUpdateInput(body);
       if (validationErros.length > 0) {
@@ -85,7 +85,7 @@ async function patchUnidade(req, res) {
 async function deleteUnidade(req, res) {
   try {
     const id = req.params.id;
-    if (id && Number(id)) {
+    if (id) {
       await deletarUnidadePorId(id);
       res.status(200).json({ mensagem: 'Unidade deletada com sucesso' });
     } else {

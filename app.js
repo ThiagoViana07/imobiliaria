@@ -27,6 +27,7 @@ console.log('Rotas disponíveis:', fs.readdirSync(routesPath)); // log the avail
 fs.readdirSync(routesPath).forEach(async (file) => {
   const route = await import(`./src/routes/${file}`);
   const routeName = file.replace('.route.js', '');
+  console.log(routeName);
   app.use(`/${routeName}`, route.default);
 });
 

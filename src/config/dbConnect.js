@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function pool() {
-  mongoose.connect(
-    'mongodb+srv://thiago123:thiago123@cluster0.gv2ljnd.mongodb.net/imobilia?appName=Cluster0',
-  );
+  mongoose.connect(process.env.MONGODB_URI);
 
   return mongoose.connection;
 }

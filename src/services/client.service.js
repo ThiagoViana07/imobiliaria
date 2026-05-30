@@ -1,20 +1,20 @@
-import { readData, saveData } from './database.js';
+// import { readData, saveData } from './database.js';
+import Clients from '../models/clients.js';
 
 // ========== CRUD FUNCTIONS ==========
 
-const getTodosClientes = () => {
+const getTodosClientes = async () => {
   try {
-    const data = readData('cliente');
+    const data = await Clients.find();
     return data;
   } catch (error) {
     throw new Error(`Erro ao buscar clientes: ${error.message}`);
   }
 };
 
-const getClienteById = (id) => {
+const getClienteById = async (id) => {
   try {
-    const clientes = readData('cliente');
-    const cliente = clientes.find((c) => c.id === id);
+    const cliente = await Clients.findOne({ _id: id });
 
     if (!cliente) {
       throw new Error(`Cliente com ID ${id} não encontrado`);
@@ -26,10 +26,9 @@ const getClienteById = (id) => {
   }
 };
 
-const getClienteByCpf = (cpf) => {
+const getClienteByCpf = async (cpf) => {
   try {
-    const clientes = readData('cliente');
-    const cliente = clientes.find((c) => c.cpf === cpf);
+    const cliente = await Clients.findOne({ cpf: cpf });
 
     if (!cliente) {
       throw new Error(`Cliente com CPF ${cpf} não encontrado`);
@@ -41,57 +40,46 @@ const getClienteByCpf = (cpf) => {
   }
 };
 
-const inserirCliente = (novoCliente) => {
+const inserirCliente = async (novoCliente) => {
   try {
-    const clientes = readData('cliente');
-
     // Verificar se CPF já existe
-    const clienteExistente = clientes.find((c) => c.cpf === novoCliente.cpf);
+    const clienteExistente = await Clients.findOne({
+      cpf: novoCliente.cpf,
+    });
+
     if (clienteExistente) {
       throw new Error(`Cliente com CPF ${novoCliente.cpf} já existe`);
     }
 
-    // Gerar novo ID (maior ID + 1)
-    const novoId = clientes.length > 0 ? Math.max(...clientes.map((c) => c.id)) + 1 : 1;
-    const novoClienteComId = {
-      id: novoId,
-      ...novoCliente,
-    };
+    const clienteCriado = await Clients.create(novoCliente);
 
-    clientes.push(novoClienteComId);
-    saveData('cliente', clientes);
-
-    return novoClienteComId;
+    return clienteCriado;
   } catch (error) {
     throw new Error(`Erro ao inserir cliente: ${error.message}`);
   }
 };
 
-const modificarCliente = (id, dadosAtualizacao) => {
+const modificarCliente = async (id, dadosAtualizacao) => {
   try {
-    const clientes = readData('cliente');
-    const indiceCliente = clientes.findIndex((c) => c.id === id);
+    const cliente = await Clients.findOne({ _id: id });
 
-    if (indiceCliente === -1) {
+    if (!cliente) {
       throw new Error(`Cliente com ID ${id} não encontrado`);
     }
 
     // Se o CPF está sendo atualizado, verificar duplicação
-    if (dadosAtualizacao.cpf && dadosAtualizacao.cpf !== clientes[indiceCliente].cpf) {
-      const cpfExistente = clientes.find((c) => c.cpf === dadosAtualizacao.cpf);
+    if (dadosAtualizacao.cpf && dadosAtualizacao.cpf !== cliente.cpf) {
+      const cpfExistente = await Clients.findOne({ cpf: dadosAtualizacao.cpf });
       if (cpfExistente) {
         throw new Error(`Cliente com CPF ${dadosAtualizacao.cpf} já existe`);
       }
     }
 
-    // Mesclar dados antigos com novos
-    const clienteAtualizado = {
-      ...clientes[indiceCliente],
-      ...dadosAtualizacao,
-    };
-    clientes[indiceCliente] = clienteAtualizado;
-
-    saveData('cliente', clientes);
+    // Atualizar o documento diretamente no banco de dados e retornar o documento atualizado
+    const clienteAtualizado = await Clients.findByIdAndUpdate(id, dadosAtualizacao, {
+      returnDocument: 'after',
+      runValidators: true,
+    });
 
     return clienteAtualizado;
   } catch (error) {
@@ -99,21 +87,16 @@ const modificarCliente = (id, dadosAtualizacao) => {
   }
 };
 
-const deletarCliente = (id) => {
+const deletarCliente = async (id) => {
   try {
-    const clientes = readData('cliente');
-    const indiceCliente = clientes.findIndex((c) => c.id === id);
+    const cliente = await Clients.findOne({ _id: id });
 
-    if (indiceCliente === -1) {
+    if (!cliente) {
       throw new Error(`Cliente com ID ${id} não encontrado`);
     }
 
-    const clienteDeletado = clientes[indiceCliente];
-    clientes.splice(indiceCliente, 1);
-
-    saveData('cliente', clientes);
-
-    return clienteDeletado;
+    await Clients.findByIdAndDelete(id);
+    return cliente;
   } catch (error) {
     throw new Error(`Erro ao deletar cliente: ${error.message}`);
   }

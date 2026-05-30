@@ -1,56 +1,42 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Aponta para a pasta 'data' na raiz do projeto
-// onde le o arquivo json
-// O "..", ".." faz ele sair de 'services', sair de 'src' e chegar na raiz, para então entrar em 'data'
-const caminhoArquivo = path.join(__dirname, '..', '..', 'data', 'vendedor-Adrian.json');
+// src/services/vendedor.service.js
+// lembrar de verificar se o nome do arquivo vendedor ta com o 'V' maiúsculo ou minúsculo
+import vendedor from "../models/vendedor.js";
 
 async function getTodosVendedores() {
-  try {
-    const dados = await fs.promises.readFile(caminhoArquivo, 'utf-8');
-    return JSON.parse(dados);
-  } catch (error) {
-    // Se o arquivo não existir, retorna um array vazio para não quebrar
-    return [];
-  }
+    // find({}) busca todos os documentos salvos na coleção "vendedores" do Atlas
+    const listaVendedores = await vendedor.find({});
+    return listaVendedores;
 }
 
 async function getVendedorPorId(id) {
-  const vendedores = await getTodosVendedores();
-  return vendedores.find((vendedor) => vendedor.id === String(id));
+    // Busca um vendedor específico pelo ID único gerado pelo MongoDB
+    const vendedorEncontrado = await vendedor.findById(id);
+    return vendedorEncontrado;
 }
 
 async function insereVendedor(vendedorNovo) {
-  const vendedores = await getTodosVendedores();
-  const novaLista = [...vendedores, vendedorNovo];
-  await fs.promises.writeFile(caminhoArquivo, JSON.stringify(novaLista, null, 2));
+    // Cria e insere um novo documento no banco de dados na nuvem
+    //await vendedor.create(vendedorNovo);
+    // Para guardar o retorno do banco em uma variável e retorna essa variavel
+    const vendedorCriado = await vendedor.create(vendedorNovo);
+    return vendedorCriado;
 }
 
 async function modificaVendedor(modificacoes, id) {
-  let vendedores = await getTodosVendedores();
-  const indice = vendedores.findIndex((vendedor) => vendedor.id === String(id));
-
-  if (indice !== -1) {
-    vendedores[indice] = { ...vendedores[indice], ...modificacoes };
-    await fs.promises.writeFile(caminhoArquivo, JSON.stringify(vendedores, null, 2));
-  }
+    // Encontra o vendedor pelo ID e aplica as modificações fornecidas
+    await vendedor.findByIdAndUpdate(id, modificacoes);
 }
 
 async function deletarVendedorPorId(id) {
-  const vendedores = await getTodosVendedores();
-  const listaFiltrada = vendedores.filter((vendedor) => vendedor.id !== String(id));
-  await fs.promises.writeFile(caminhoArquivo, JSON.stringify(listaFiltrada, null, 2));
+    // Encontra o vendedor pelo ID e o deleta do banco de dados
+    await vendedor.findByIdAndDelete(id);
 }
 
+// Exportando as funções no formato ES Modules (ECMAScript)
 export {
-  getTodosVendedores,
-  getVendedorPorId,
-  insereVendedor,
-  modificaVendedor,
-  deletarVendedorPorId,
+    getTodosVendedores,
+    getVendedorPorId,
+    insereVendedor,
+    modificaVendedor,
+    deletarVendedorPorId
 };

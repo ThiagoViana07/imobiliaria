@@ -1,6 +1,4 @@
 import { Router } from 'express';
-const router = Router();
-// coloquei a pasta no singular, mas ta no plural, controllers
 import {
   getVendedores,
   getVendedor,
@@ -8,6 +6,9 @@ import {
   patchVendedor,
   deleteVendedor,
 } from '../controllers/vendedor.controller.js';
+// coloquei a pasta no singular, mas ta no plural, controllers
+
+const router = Router();
 
 router.get('/', getVendedores);
 router.get('/:id', getVendedor);

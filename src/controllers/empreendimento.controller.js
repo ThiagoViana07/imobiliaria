@@ -1,15 +1,15 @@
-const {
+import {
   deletarEmpreendimentoPorId,
   getEmpreendimentoPorId,
   getTodosEmpreendimentos,
   insereEmpreendimento,
   modificaEmpreendimento,
-} = require("../services/empreendimento.service.js");
+} from '../services/empreendimento.service.js';
 
-const {
+import {
   validateEmpreendimentoInput,
-  validateEmpreendimentoUpdateInput
-} = require("../validations/empreendimento.validation.js");
+  validateEmpreendimentoUpdateInput,
+} from '../validations/empreendimento.validation.js';
 
 async function getEmpreendimentos(req, res) {
   try {
@@ -27,7 +27,7 @@ async function getEmpreendimento(req, res) {
       const empreendimento = await getEmpreendimentoPorId(id);
       res.status(200).json(empreendimento);
     } else {
-      res.status(422).json({ mensagem: "Id inválido" });
+      res.status(422).json({ mensagem: 'Id inválido' });
     }
   } catch (error) {
     res.status(500).json({ erro: error.message });
@@ -42,14 +42,14 @@ async function postEmpreendimento(req, res) {
 
     if (validationErros.length > 0) {
       res.status(400).json({
-        message: "Dados de entrada inválidos",
+        message: 'Dados de entrada inválidos',
         success: false,
         errors: validationErros,
       });
     } else {
       await insereEmpreendimento(empreendimentoNovo);
       res.status(201).json({
-        message: "Empreendimento inserido com sucesso!",
+        message: 'Empreendimento inserido com sucesso!',
         success: true,
         data: empreendimentoNovo,
       });
@@ -69,18 +69,16 @@ async function patchEmpreendimento(req, res) {
 
       if (validationErros.length > 0) {
         res.status(400).json({
-          message: "Dados de entrada inválidos",
+          message: 'Dados de entrada inválidos',
           success: false,
           errors: validationErros,
         });
       } else {
         await modificaEmpreendimento(body, id);
-        res
-          .status(200)
-          .json({ mensagem: "Empreendimento atualizado com sucesso" });
+        res.status(200).json({ mensagem: 'Empreendimento atualizado com sucesso' });
       }
     } else {
-      res.status(422).json({ mensagem: "Id inválido" });
+      res.status(422).json({ mensagem: 'Id inválido' });
     }
   } catch (error) {
     res.status(500).json({ erro: error.message });
@@ -92,16 +90,16 @@ async function deleteEmpreendimento(req, res) {
     const id = req.params.id;
     if (id && Number(id)) {
       await deletarEmpreendimentoPorId(id);
-      res.status(200).json({ mensagem: "Empreendimento deletado com sucesso" });
+      res.status(200).json({ mensagem: 'Empreendimento deletado com sucesso' });
     } else {
-      res.status(422).json({ mensagem: "Id inválido" });
+      res.status(422).json({ mensagem: 'Id inválido' });
     }
   } catch (error) {
     res.status(500).json({ erro: error.message });
   }
 }
 
-module.exports = {
+export {
   getEmpreendimentos,
   getEmpreendimento,
   postEmpreendimento,

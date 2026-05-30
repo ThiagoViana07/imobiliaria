@@ -16,12 +16,10 @@ const validateDate = (date) => {
   const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
   if (!dateRegex.test(date)) return false;
 
-  const [day, month, year] = date.split("/").map(Number);
+  const [day, month, year] = date.split('/').map(Number);
   const dateObj = new Date(year, month - 1, day);
   return (
-    dateObj.getFullYear() === year &&
-    dateObj.getMonth() === month - 1 &&
-    dateObj.getDate() === day
+    dateObj.getFullYear() === year && dateObj.getMonth() === month - 1 && dateObj.getDate() === day
   );
 };
 
@@ -37,12 +35,4 @@ const validateCEP = (cep) => {
   return cepRegex.test(cep);
 };
 
-module.exports = {
-  validateEmail,
-  validateCPF,
-  validateDate,
-  validatePhone,
-  validateCEP,
-
-};
-
+export { validateEmail, validateCPF, validateDate, validatePhone, validateCEP };

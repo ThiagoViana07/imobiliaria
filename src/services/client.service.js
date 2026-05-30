@@ -1,10 +1,10 @@
-const { readData, saveData } = require("./database");
+import { readData, saveData } from './database.js';
 
 // ========== CRUD FUNCTIONS ==========
 
 const getTodosClientes = () => {
   try {
-    const data = readData("cliente");
+    const data = readData('cliente');
     return data;
   } catch (error) {
     throw new Error(`Erro ao buscar clientes: ${error.message}`);
@@ -13,7 +13,7 @@ const getTodosClientes = () => {
 
 const getClienteById = (id) => {
   try {
-    const clientes = readData("cliente");
+    const clientes = readData('cliente');
     const cliente = clientes.find((c) => c.id === id);
 
     if (!cliente) {
@@ -28,7 +28,7 @@ const getClienteById = (id) => {
 
 const getClienteByCpf = (cpf) => {
   try {
-    const clientes = readData("cliente");
+    const clientes = readData('cliente');
     const cliente = clientes.find((c) => c.cpf === cpf);
 
     if (!cliente) {
@@ -43,7 +43,7 @@ const getClienteByCpf = (cpf) => {
 
 const inserirCliente = (novoCliente) => {
   try {
-    const clientes = readData("cliente");
+    const clientes = readData('cliente');
 
     // Verificar se CPF já existe
     const clienteExistente = clientes.find((c) => c.cpf === novoCliente.cpf);
@@ -52,15 +52,14 @@ const inserirCliente = (novoCliente) => {
     }
 
     // Gerar novo ID (maior ID + 1)
-    const novoId =
-      clientes.length > 0 ? Math.max(...clientes.map((c) => c.id)) + 1 : 1;
+    const novoId = clientes.length > 0 ? Math.max(...clientes.map((c) => c.id)) + 1 : 1;
     const novoClienteComId = {
       id: novoId,
       ...novoCliente,
     };
 
     clientes.push(novoClienteComId);
-    saveData("cliente", clientes);
+    saveData('cliente', clientes);
 
     return novoClienteComId;
   } catch (error) {
@@ -70,7 +69,7 @@ const inserirCliente = (novoCliente) => {
 
 const modificarCliente = (id, dadosAtualizacao) => {
   try {
-    const clientes = readData("cliente");
+    const clientes = readData('cliente');
     const indiceCliente = clientes.findIndex((c) => c.id === id);
 
     if (indiceCliente === -1) {
@@ -78,10 +77,7 @@ const modificarCliente = (id, dadosAtualizacao) => {
     }
 
     // Se o CPF está sendo atualizado, verificar duplicação
-    if (
-      dadosAtualizacao.cpf &&
-      dadosAtualizacao.cpf !== clientes[indiceCliente].cpf
-    ) {
+    if (dadosAtualizacao.cpf && dadosAtualizacao.cpf !== clientes[indiceCliente].cpf) {
       const cpfExistente = clientes.find((c) => c.cpf === dadosAtualizacao.cpf);
       if (cpfExistente) {
         throw new Error(`Cliente com CPF ${dadosAtualizacao.cpf} já existe`);
@@ -95,7 +91,7 @@ const modificarCliente = (id, dadosAtualizacao) => {
     };
     clientes[indiceCliente] = clienteAtualizado;
 
-    saveData("cliente", clientes);
+    saveData('cliente', clientes);
 
     return clienteAtualizado;
   } catch (error) {
@@ -105,7 +101,7 @@ const modificarCliente = (id, dadosAtualizacao) => {
 
 const deletarCliente = (id) => {
   try {
-    const clientes = readData("cliente");
+    const clientes = readData('cliente');
     const indiceCliente = clientes.findIndex((c) => c.id === id);
 
     if (indiceCliente === -1) {
@@ -115,7 +111,7 @@ const deletarCliente = (id) => {
     const clienteDeletado = clientes[indiceCliente];
     clientes.splice(indiceCliente, 1);
 
-    saveData("cliente", clientes);
+    saveData('cliente', clientes);
 
     return clienteDeletado;
   } catch (error) {
@@ -123,8 +119,7 @@ const deletarCliente = (id) => {
   }
 };
 
-// ========== EXPORTS ==========
-module.exports = {
+export {
   getTodosClientes,
   getClienteById,
   getClienteByCpf,

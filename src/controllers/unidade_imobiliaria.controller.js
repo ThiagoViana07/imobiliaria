@@ -1,15 +1,15 @@
-const {
+import {
   deletarUnidadePorId,
   getTodosUnidade,
   getUnidadePorId,
   insereUnidade,
   modificaUnidade,
-} = require("../services/unidade_imobiliaria.service.js");
+} from '../services/unidade_imobiliaria.service.js';
 
-const {
+import {
   validateUnidadeInput,
   validateUnidadeUpdateInput,
-} = require("../validations/unidade.validation.js");
+} from '../validations/unidade.validation.js';
 
 async function getUnidades(req, res) {
   try {
@@ -27,7 +27,7 @@ async function getUnidade(req, res) {
       const unidade = await getUnidadePorId(id);
       res.status(200).json(unidade);
     } else {
-      res.status(422).json({ mensagem: "Id inválido" });
+      res.status(422).json({ mensagem: 'Id inválido' });
     }
   } catch (error) {
     res.status(500).json({ erro: error.message });
@@ -40,14 +40,14 @@ async function postUnidade(req, res) {
     const validationErros = validateUnidadeInput(unidadeNova);
     if (validationErros.length > 0) {
       res.status(400).json({
-        message: "Dados de entrada inválidos",
+        message: 'Dados de entrada inválidos',
         success: false,
         errors: validationErros,
       });
     } else {
       await insereUnidade(unidadeNova);
       res.status(201).json({
-        message: "Unidade inserida com sucesso!",
+        message: 'Unidade inserida com sucesso!',
         success: true,
         data: unidadeNova,
       });
@@ -66,16 +66,16 @@ async function patchUnidade(req, res) {
       const validationErros = validateUnidadeUpdateInput(body);
       if (validationErros.length > 0) {
         res.status(400).json({
-          message: "Dados de entrada inválidos",
+          message: 'Dados de entrada inválidos',
           success: false,
           errors: validationErros,
         });
       } else {
         await modificaUnidade(body, id);
-        res.status(200).json({ mensagem: "Unidade atualizada com sucesso" });
+        res.status(200).json({ mensagem: 'Unidade atualizada com sucesso' });
       }
     } else {
-      res.status(422).json({ mensagem: "Id inválido" });
+      res.status(422).json({ mensagem: 'Id inválido' });
     }
   } catch (error) {
     res.status(500).json({ erro: error.message });
@@ -87,19 +87,13 @@ async function deleteUnidade(req, res) {
     const id = req.params.id;
     if (id && Number(id)) {
       await deletarUnidadePorId(id);
-      res.status(200).json({ mensagem: "Unidade deletada com sucesso" });
+      res.status(200).json({ mensagem: 'Unidade deletada com sucesso' });
     } else {
-      res.status(422).json({ mensagem: "Id inválido" });
+      res.status(422).json({ mensagem: 'Id inválido' });
     }
   } catch (error) {
     res.status(500).json({ erro: error.message });
   }
 }
 
-module.exports = {
-  getUnidades,
-  getUnidade,
-  postUnidade,
-  patchUnidade,
-  deleteUnidade,
-};
+export { getUnidades, getUnidade, postUnidade, patchUnidade, deleteUnidade };

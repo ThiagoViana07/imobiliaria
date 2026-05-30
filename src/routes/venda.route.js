@@ -1,17 +1,18 @@
-const {  obterVenda, 
-    obterVendas, 
-    cadastrarVenda, 
-    deletarVenda, 
-    editarVenda  
-} = require("../controllers/venda.controller")
+import {
+  obterVenda,
+  obterVendas,
+  cadastrarVenda,
+  deletarVenda,
+  editarVenda,
+} from '../controllers/venda.controller.js';
 
-const { Router } = require('express');
+import { Router } from 'express';
 const router = Router();
 
-router.get('/', obterVendas)
-router.get('/:id', obterVenda)
-router.post('/', cadastrarVenda)
-router.delete('/:id', deletarVenda)
-router.patch('/:id', editarVenda)
+router.get('/', obterVendas);
+router.get('/:id', obterVenda);
+router.post('/', cadastrarVenda);
+router.delete('/:id', deletarVenda);
+router.patch('/:id', editarVenda);
 
-module.exports = router;
+export default router;

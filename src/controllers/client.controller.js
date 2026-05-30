@@ -1,20 +1,20 @@
-const {
+import {
   getTodosClientes,
   getClienteById,
   getClienteByCpf,
   inserirCliente,
   modificarCliente,
   deletarCliente,
-} = require("../services/client.service");
+} from '../services/client.service.js';
 
 // ========== VALIDATION FUNCTIONS ==========
 
-const {
+import {
   validateClientInput,
   validateClientUpdateInput,
-} = require("../validations/vendedor.validation");
+} from '../validations/vendedor.validation.js';
 
-const { validateCPF } = require("../validations/common.validation");
+import { validateCPF } from '../validations/common.validation.js';
 
 // ========== CONTROLLER FUNCTIONS ==========
 
@@ -27,10 +27,10 @@ const getClientes = async (req, res) => {
       count: clientes.length,
     });
   } catch (error) {
-    console.error("Erro ao buscar clientes:", error);
+    console.error('Erro ao buscar clientes:', error);
     res.status(500).json({
       success: false,
-      message: "Erro interno do servidor",
+      message: 'Erro interno do servidor',
       error: error.message,
     });
   }
@@ -43,7 +43,7 @@ const getCliente = async (req, res) => {
     if (!id || isNaN(parseInt(id))) {
       return res.status(400).json({
         success: false,
-        message: "ID do cliente deve ser um número válido",
+        message: 'ID do cliente deve ser um número válido',
       });
     }
 
@@ -53,9 +53,9 @@ const getCliente = async (req, res) => {
       data: cliente,
     });
   } catch (error) {
-    console.error("Erro ao buscar cliente:", error);
+    console.error('Erro ao buscar cliente:', error);
 
-    if (error.message.includes("não encontrado")) {
+    if (error.message.includes('não encontrado')) {
       return res.status(404).json({
         success: false,
         message: error.message,
@@ -64,7 +64,7 @@ const getCliente = async (req, res) => {
 
     res.status(500).json({
       success: false,
-      message: "Erro interno do servidor",
+      message: 'Erro interno do servidor',
       error: error.message,
     });
   }
@@ -74,11 +74,10 @@ const getClientePorCpf = async (req, res) => {
   try {
     const { cpf } = req.params;
 
-    if (!cpf || typeof cpf !== "string" || !validateCPF(cpf)) {
+    if (!cpf || typeof cpf !== 'string' || !validateCPF(cpf)) {
       return res.status(400).json({
         success: false,
-        message:
-          "CPF fornecido é inválido. Ele deve ser uma string no formato XXX.XXX.XXX-XX",
+        message: 'CPF fornecido é inválido. Ele deve ser uma string no formato XXX.XXX.XXX-XX',
       });
     }
 
@@ -88,9 +87,9 @@ const getClientePorCpf = async (req, res) => {
       data: cliente,
     });
   } catch (error) {
-    console.error("Erro ao buscar cliente por CPF:", error);
+    console.error('Erro ao buscar cliente por CPF:', error);
 
-    if (error.message.includes("não encontrado")) {
+    if (error.message.includes('não encontrado')) {
       return res.status(404).json({
         success: false,
         message: error.message,
@@ -99,7 +98,7 @@ const getClientePorCpf = async (req, res) => {
 
     res.status(500).json({
       success: false,
-      message: "Erro interno do servidor",
+      message: 'Erro interno do servidor',
       error: error.message,
     });
   }
@@ -114,20 +113,20 @@ const criarCliente = async (req, res) => {
     if (validationErrors.length > 0) {
       return res.status(400).json({
         success: false,
-        message: "Dados de entrada inválidos",
+        message: 'Dados de entrada inválidos',
         errors: validationErrors,
       });
     }
     const novoCliente = inserirCliente(clienteData);
     res.status(201).json({
       success: true,
-      message: "Cliente criado com sucesso",
+      message: 'Cliente criado com sucesso',
       data: novoCliente,
     });
   } catch (error) {
-    console.error("Erro ao criar cliente:", error);
+    console.error('Erro ao criar cliente:', error);
 
-    if (error.message.includes("já existe")) {
+    if (error.message.includes('já existe')) {
       return res.status(409).json({
         success: false,
         message: error.message,
@@ -136,7 +135,7 @@ const criarCliente = async (req, res) => {
 
     res.status(500).json({
       success: false,
-      message: "Erro interno do servidor",
+      message: 'Erro interno do servidor',
       error: error.message,
     });
   }
@@ -150,7 +149,7 @@ const atualizarCliente = async (req, res) => {
     if (!id || isNaN(parseInt(id))) {
       return res.status(400).json({
         success: false,
-        message: "ID do cliente deve ser um número válido",
+        message: 'ID do cliente deve ser um número válido',
       });
     }
 
@@ -159,7 +158,7 @@ const atualizarCliente = async (req, res) => {
     if (validationErrors.length > 0) {
       return res.status(400).json({
         success: false,
-        message: "Dados de atualização inválidos",
+        message: 'Dados de atualização inválidos',
         errors: validationErrors,
       });
     }
@@ -167,20 +166,20 @@ const atualizarCliente = async (req, res) => {
     const clienteAtualizado = modificarCliente(parseInt(id), updateData);
     res.status(200).json({
       success: true,
-      message: "Cliente atualizado com sucesso",
+      message: 'Cliente atualizado com sucesso',
       data: clienteAtualizado,
     });
   } catch (error) {
-    console.error("Erro ao atualizar cliente:", error);
+    console.error('Erro ao atualizar cliente:', error);
 
-    if (error.message.includes("não encontrado")) {
+    if (error.message.includes('não encontrado')) {
       return res.status(404).json({
         success: false,
         message: error.message,
       });
     }
 
-    if (error.message.includes("já existe")) {
+    if (error.message.includes('já existe')) {
       return res.status(409).json({
         success: false,
         message: error.message,
@@ -189,7 +188,7 @@ const atualizarCliente = async (req, res) => {
 
     res.status(500).json({
       success: false,
-      message: "Erro interno do servidor",
+      message: 'Erro interno do servidor',
       error: error.message,
     });
   }
@@ -202,20 +201,20 @@ const excluirCliente = async (req, res) => {
     if (!id || isNaN(parseInt(id))) {
       return res.status(400).json({
         success: false,
-        message: "ID do cliente deve ser um número válido",
+        message: 'ID do cliente deve ser um número válido',
       });
     }
 
     const clienteDeletado = deletarCliente(parseInt(id));
     res.status(200).json({
       success: true,
-      message: "Cliente excluído com sucesso",
+      message: 'Cliente excluído com sucesso',
       data: clienteDeletado,
     });
   } catch (error) {
-    console.error("Erro ao excluir cliente:", error);
+    console.error('Erro ao excluir cliente:', error);
 
-    if (error.message.includes("não encontrado")) {
+    if (error.message.includes('não encontrado')) {
       return res.status(404).json({
         success: false,
         message: error.message,
@@ -224,14 +223,14 @@ const excluirCliente = async (req, res) => {
 
     res.status(500).json({
       success: false,
-      message: "Erro interno do servidor",
+      message: 'Erro interno do servidor',
       error: error.message,
     });
   }
 };
 
 // ========== EXPORTS ==========
-module.exports = {
+export {
   getClientes,
   getCliente,
   getClientePorCpf,

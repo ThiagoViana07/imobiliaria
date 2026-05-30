@@ -1,6 +1,13 @@
-const { Router } = require("express");
-const router = Router()
-const { deleteUnidade, getUnidade, getUnidades, patchUnidade, postUnidade } = require("../controllers/unidade_imobiliaria.controller.js");
+import { Router } from 'express';
+import {
+  deleteUnidade,
+  getUnidade,
+  getUnidades,
+  patchUnidade,
+  postUnidade,
+} from '../controllers/unidade_imobiliaria.controller.js';
+
+const router = Router();
 
 router.get('/', getUnidades);
 router.get('/:id', getUnidade);
@@ -8,4 +15,4 @@ router.post('/', postUnidade);
 router.patch('/:id', patchUnidade);
 router.delete('/:id', deleteUnidade);
 
-module.exports = router;
+export default router;

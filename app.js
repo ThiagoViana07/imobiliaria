@@ -3,6 +3,7 @@ import path from 'path';
 import express from 'express';
 import { fileURLToPath } from 'url';
 import pool from './src/config/dbConnect.js';
+import cors from 'cors';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +19,9 @@ conexao.once('open', () => {
 });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
+
 const port = 8000;
 
 const routesPath = path.join(__dirname, 'src', 'routes'); // array of files in the routes directory

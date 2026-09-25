@@ -1,15 +1,14 @@
 const caminhoArquivo = 'empreendimentos.json';
 import empreendimentosSchema from '../models/empreendimentos.js';
 
+// src/services/empreendimento.service.js
 async function getTodosEmpreendimentos() {
-  const empreendimentos = await empreendimentosSchema.find({});
+  const empreendimentos = await empreendimentosSchema.find({}).populate('unidade_imobiliaria');
   return empreendimentos;
 }
 
 async function getEmpreendimentoPorId(id) {
-  // const empreendimentos = await getTodosEmpreendimentos();
-  // return empreendimentos.find((empreendimento) => empreendimento.id == id);
-  const empreendimento = await empreendimentosSchema.findById(id);
+  const empreendimento = await empreendimentosSchema.findById(id).populate('unidade_imobiliaria');
   return empreendimento;
 }
 

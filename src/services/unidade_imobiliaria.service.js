@@ -1,16 +1,13 @@
 const caminhoArquivo = 'unidade_imobiliaria.json';
 import unidadesImobiliariasSchema from '../models/unidade-imobiliaria.js';
+
 async function getTodosUnidade() {
-  // const dados = await fs.promises.readFile(caminhoArquivo, 'utf-8');
-  // return JSON.parse(dados);
-  const unidades = await unidadesImobiliariasSchema.find({});
+  const unidades = await unidadesImobiliariasSchema.find({}).populate('empreendimento_id'); // troca o ObjectId pelo doc completo do empreendimento
   return unidades;
 }
 
 async function getUnidadePorId(id) {
-  // const unidades = await getTodosUnidade();
-  // return unidades.find((unidade) => unidade.id == id);
-  const unidade = await unidadesImobiliariasSchema.findById(id);
+  const unidade = await unidadesImobiliariasSchema.findById(id).populate('empreendimento_id');
   return unidade;
 }
 

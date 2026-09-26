@@ -22,7 +22,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const routesPath = path.join(__dirname, 'src', 'routes'); // array of files in the routes directory
 console.log('Rotas disponíveis:', fs.readdirSync(routesPath)); // log the available routes
